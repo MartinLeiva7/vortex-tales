@@ -1,0 +1,44 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 11,
+  "chapter_title": "La Torre de Guardia",
+  "start_node_id": "c11_inicio",
+  "trophies": [],
+  "nodes": {
+    "c11_inicio": {
+      "text": "Subes por una estrecha escalera de caracol de hierro que tiembla a cada paso. El viento nocturno ruge con fuerza en el cuarto superior de la torre de guardia, donde se halla la maquinaria de las rejas.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "shake",
+      "options": [
+        {
+          "text": "Tirar de la gran palanca oxidada marcada con la palabra 'Salida'",
+          "next_node_id": "c11_palanca"
+        },
+        {
+          "text": "Refugiarte temporalmente en el cuarto de control de la maquinaria",
+          "next_node_id": "c11_muerte"
+        }
+      ]
+    },
+    "c11_muerte": {
+      "text": "Te adentras en el cuarto de máquinas buscando refugio. Los engranajes oxidados de toneladas de hierro se activan de repente, atrapando tus prendas y aplastándote despiadadamente.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar al inicio de la torre (Reintentar)",
+          "next_node_id": "c11_inicio"
+        }
+      ]
+    },
+    "c11_palanca": {
+      "text": "Tiras con fuerza de la pesada palanca metálica. Un estruendo sordo sacude la torre y abajo en la oscuridad del patio, escuchas el chirrido del portón principal de hierro abriéndose lentamente.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "shake",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}

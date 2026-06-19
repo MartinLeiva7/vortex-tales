@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Outfit:wght@300;400;500;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* Default Theme: Dark (Asylum cold/techy) */
+  --bg-primary: #07090e;
+  --bg-secondary: #0d111a;
+  --bg-tertiary: #161c28;
+  
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  
+  --accent-teal: #00f0ff;
+  --accent-teal-glow: rgba(0, 240, 255, 0.4);
+  --accent-red: #ff3366;
+  --accent-red-glow: rgba(255, 51, 102, 0.4);
+  --accent-gold: #ffc837;
+  --accent-gold-glow: rgba(255, 200, 55, 0.4);
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(0, 240, 255, 0.15);
+  
+  /* Fonts */
+  --font-title: 'Cinzel', serif;
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-serif: 'Merriweather', Georgia, serif;
+
+  /* Layout */
+  --border-radius: 12px;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme Variables (Warm Sepia/Reader Paper) */
+.light-theme {
+  --bg-primary: #f5f2eb;
+  --bg-secondary: #e8e4d9;
+  --bg-tertiary: #dbd6c7;
+  
+  --text-primary: #1c1917;
+  --text-secondary: #44403c;
+  --text-muted: #85847e;
+  
+  --accent-teal: #0f766e;
+  --accent-teal-glow: rgba(15, 118, 110, 0.25);
+  --accent-red: #b91c1c;
+  --accent-red-glow: rgba(185, 28, 28, 0.25);
+  --accent-gold: #b45309;
+  --accent-gold-glow: rgba(180, 83, 9, 0.25);
+  
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-glow: rgba(15, 118, 110, 0.08);
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) var(--bg-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Glassmorphism Panel Utility with theme adaptation */
+.glass-panel {
+  background: rgba(13, 17, 26, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-radius: var(--border-radius);
+  transition: var(--transition-smooth);
+}
+
+.light-theme .glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Glowing Button Styling */
+.glow-btn {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.light-theme .glow-btn {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.glow-btn:hover:not(:disabled) {
+  border-color: var(--accent-teal);
+  background: rgba(0, 240, 255, 0.05);
+  box-shadow: 0 0 15px var(--accent-teal-glow);
+  text-shadow: 0 0 5px var(--accent-teal);
+}
+
+.light-theme .glow-btn:hover:not(:disabled) {
+  background: rgba(15, 118, 110, 0.06);
+  text-shadow: none;
+}
+
+.glow-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.glow-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Specific Red glow button */
+.glow-btn-red:hover:not(:disabled) {
+  border-color: var(--accent-red);
+  background: rgba(255, 51, 102, 0.05);
+  box-shadow: 0 0 15px var(--accent-red-glow);
+  text-shadow: 0 0 5px var(--accent-red);
+}
+
+.light-theme .glow-btn-red:hover:not(:disabled) {
+  background: rgba(185, 28, 28, 0.06);
+  text-shadow: none;
+}
+
+/* --- Immersive Animations & Effects --- */
+
+/* Camera Shake Effect */
+.effect-shake {
+  animation: camera-shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes camera-shake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(4px, 2px, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, -4px, 0); }
+  40%, 60% { transform: translate3d(6px, 4px, 0); }
+}
+
+/* Light Flicker Effect */
+.effect-flicker {
+  animation: light-flicker 2s infinite;
+}
+
+@keyframes light-flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 0.99;
+    filter: brightness(1);
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.3;
+    filter: brightness(0.4) contrast(1.2);
+  }
+}
+
+/* Red Flash Vignette Effect */
+.effect-red_flash {
+  position: relative;
+}
+.effect-red_flash::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 100px rgba(255, 51, 102, 0.8);
+  pointer-events: none;
+  animation: red-flash-anim 0.8s ease-out infinite alternate;
+  z-index: 9999;
+}
+
+.light-theme.effect-red_flash::after {
+  box-shadow: inset 0 0 100px rgba(185, 28, 28, 0.6);
+}
+
+@keyframes red-flash-anim {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+
+/* Fade To Black Transition */
+.effect-fade_to_black {
+  animation: fade-black-anim 2.5s forwards;
+}
+
+@keyframes fade-black-anim {
+  from { filter: brightness(1); }
+  to { filter: brightness(0); background: #000; }
+}
+
+/* Slide in from right (Trophy toast) */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Typography styles */
+.cinzel-title {
+  font-family: var(--font-title);
+  letter-spacing: 2px;
+}
+
+.mono-stats {
+  font-family: var(--font-mono);
+}
+
+/* Typewriter animation support */
+.typewriter-cursor::after {
+  content: '▋';
+  color: var(--accent-teal);
+  animation: cursor-blink 1s step-start infinite;
+  margin-left: 2px;
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}

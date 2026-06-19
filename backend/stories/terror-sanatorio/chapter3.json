@@ -1,0 +1,55 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 3,
+  "chapter_title": "El Vestíbulo de Recepción",
+  "start_node_id": "c3_inicio",
+  "trophies": [],
+  "nodes": {
+    "c3_inicio": {
+      "text": "El ascensor de carga se detiene con un crujido seco. Al escurrirte por las puertas trabadas, entras al vestíbulo principal del sanatorio. El lugar está sumido en el silencio, excepto por el chirrido lejano del viento que se cuela por las ventanas rotas.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "flicker",
+      "options": [
+        {
+          "text": "Registrar el mostrador de recepción en ruinas",
+          "next_node_id": "c3_recepcion"
+        }
+      ]
+    },
+    "c3_recepcion": {
+      "text": "Revisas los cajones del viejo escritorio del mostrador. Encuentras fichas de pacientes destruidas y una llave dorada oxidada con una etiqueta de metal. Un golpe metálico retumba a tu derecha.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "shake",
+      "options": [
+        {
+          "text": "Usar la llave en la reja lateral que lleva al bloque clínico",
+          "next_node_id": "c3_laboratorio_acceso"
+        },
+        {
+          "text": "Ignorar el ruido y correr hacia el pasillo de la derecha",
+          "next_node_id": "c3_muerte_trampa"
+        }
+      ]
+    },
+    "c3_muerte_trampa": {
+      "text": "Caminas rápido por el pasillo de la derecha. Bajo tus pies, las viejas maderas carcomidas ceden y caes al vacío en un conducto de escombros de hierro. Tu viaje termina aquí.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar en el ascensor (Reintentar)",
+          "next_node_id": "c3_inicio"
+        }
+      ]
+    },
+    "c3_laboratorio_acceso": {
+      "text": "La llave gira con esfuerzo en la cerradura de la reja. Te deslizas al interior y la reja se cierra de golpe a tus espaldas, dejándote a salvo por ahora en el ala de laboratorios.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}

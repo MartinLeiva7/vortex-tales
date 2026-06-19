@@ -1,0 +1,224 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 2,
+  "chapter_title": "El Sótano del Dolor",
+  "start_node_id": "c2_inicio",
+  "trophies": [
+    {
+      "id": "t_tecnico",
+      "title": "Ingeniero del Miedo",
+      "description": "Logra encender la computadora del laboratorio usando el fusible.",
+      "icon": "Cpu"
+    },
+    {
+      "id": "t_superviviente_morgue",
+      "title": "Cazador de Sombras",
+      "description": "Derrota al infectado de la morgue usando tus reflejos.",
+      "icon": "ShieldAlert"
+    },
+    {
+      "id": "t_morgue_explorador",
+      "title": "Investigador de Necropsias",
+      "description": "Registra los archivos de la morgue sin despertar al infectado.",
+      "icon": "FileText"
+    }
+  ],
+  "nodes": {
+    "c2_inicio": {
+      "text": "Llegas rodando al suelo frío del sótano. El aire aquí abajo es denso, húmedo y huele a carne podrida. Delante de ti se abren tres caminos: un pasillo lleno de tuberías sibilantes, la morgue a la izquierda y lo que parece un laboratorio clínico a la derecha.",
+      "ambient_sound": "audio/ambience_basylum_basement.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Caminar hacia el pasillo de tuberías de vapor",
+          "next_node_id": "c2_pasillo_tuberias"
+        },
+        {
+          "text": "Entrar a la morgue silenciosa",
+          "next_node_id": "c2_morgue"
+        },
+        {
+          "text": "Explorar el laboratorio clínico",
+          "next_node_id": "c2_laboratorio"
+        }
+      ]
+    },
+    "c2_pasillo_tuberias": {
+      "text": "Avanzas por el pasillo. Una de las tuberías principales está rota y expulsa chorros de vapor hirviendo a alta presión, bloqueando completamente el camino. En la pared lateral distingues una válvula metálica de cierre rápido.",
+      "ambient_sound": "audio/ambience_steam_loop.mp3",
+      "visual_effect": "flicker",
+      "options": [
+        {
+          "text": "Cruzar corriendo a través del vapor hirviendo",
+          "next_node_id": "c2_muerte_vapor"
+        },
+        {
+          "text": "Intentar girar la válvula de metal oxidada",
+          "next_node_id": "c2_valvula"
+        }
+      ]
+    },
+    "c2_muerte_vapor": {
+      "text": "Corres hacia el vapor. El calor extremo derrite instantáneamente tu piel y llena tus pulmones de aire abrasador. Tropiezas y caes al suelo, consumido por un dolor inimaginable. Tu viaje termina aquí.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Reintentar desde el inicio del sótano",
+          "next_node_id": "c2_inicio"
+        }
+      ]
+    },
+    "c2_valvula": {
+      "text": "Usas todas tus fuerzas para girar la válvula oxidada. Con un crujido chirriante, el chorro de vapor disminuye hasta cesar. Detrás de la cortina de vapor, revelas un nicho en la pared con un interruptor eléctrico antiguo.",
+      "ambient_sound": "audio/ambience_basylum_basement.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Activar el interruptor eléctrico",
+          "next_node_id": "c2_mecanismo_activado"
+        },
+        {
+          "text": "Regresar al vestíbulo del sótano",
+          "next_node_id": "c2_inicio"
+        }
+      ]
+    },
+    "c2_mecanismo_activado": {
+      "text": "Tiras de la palanca. Un eco mecánico resuena en las paredes del sótano. Escuchas el sonido metálico de una reja abriéndose en la dirección de la morgue.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "shake",
+      "options": [
+        {
+          "text": "Ir a la morgue a investigar qué se abrió",
+          "next_node_id": "c2_morgue"
+        }
+      ]
+    },
+    "c2_morgue": {
+      "text": "La morgue tiene camillas con bolsas para cadáveres alineadas. El frío es congelante. En una camilla central, una de las bolsas negras se agita levemente, como si algo adentro respirara con dificultad.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "flicker",
+      "options": [
+        {
+          "text": "Abrir la bolsa que se mueve",
+          "next_node_id": "c2_bolsa_abierta"
+        },
+        {
+          "text": "Ignorar la bolsa y registrar los archivadores de metal al fondo",
+          "next_node_id": "c2_archivadores"
+        }
+      ]
+    },
+    "c2_bolsa_abierta": {
+      "text": "Abres la cremallera despacio. Un hombre infectado de ojos blancos y mandíbula dislocada salta sobre ti con un grito salvaje. Sus manos se dirigen directo a tu cuello para estrangularte.",
+      "ambient_sound": "audio/monster_jumpscare.mp3",
+      "visual_effect": "red_flash",
+      "options": [
+        {
+          "text": "Buscar a ciegas un bisturí en la mesa contigua para defenderte",
+          "next_node_id": "c2_pelea_ganada"
+        },
+        {
+          "text": "Intentar empujarlo y correr hacia la salida",
+          "next_node_id": "c2_muerte_infeccion"
+        }
+      ]
+    },
+    "c2_muerte_infeccion": {
+      "text": "El infectado es demasiado rápido y fuerte. Te derriba contra el suelo de hormigón y clava sus dientes en tu cuello. La infección se esparce por tus venas en segundos mientras tus ojos se apagan.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Reintentar desde el inicio del sótano",
+          "next_node_id": "c2_inicio"
+        }
+      ]
+    },
+    "c2_pelea_ganada": {
+      "text": "Tus dedos tocan el mango de un bisturí metálico. Lo clavas con fuerza en el cráneo del infectado. El cuerpo se desmorona sobre ti y queda inmóvil. Al registrar los bolsillos de su bata, encuentras un fusible de alta potencia intacto.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "unlock_trophy_id": "t_superviviente_morgue",
+      "options": [
+        {
+          "text": "Llevar el fusible al laboratorio clínico",
+          "next_node_id": "c2_laboratorio_fusible"
+        }
+      ]
+    },
+    "c2_archivadores": {
+      "text": "Evitas la camilla y abres los archivadores oxidados. Encuentras reportes de experimentos sobre la gema negra 'Vórtice'. Entre los papeles encuentras una tarjeta llave con un fusible de alta potencia tirado en el suelo.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "unlock_trophy_id": "t_morgue_explorador",
+      "options": [
+        {
+          "text": "Tomar el fusible e ir al laboratorio",
+          "next_node_id": "c2_laboratorio_fusible"
+        }
+      ]
+    },
+    "c2_laboratorio": {
+      "text": "En el laboratorio hay terminales informáticas apagadas. Al fondo, una compuerta metálica pesada bloquea el ascensor de carga. Una consola de control muestra el texto: 'Suministro eléctrico del panel de control apagado'. Faltan fusibles en la caja de fusibles lateral.",
+      "ambient_sound": "audio/ambience_basylum_basement.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Intentar puentear los cables manualmente",
+          "next_node_id": "c2_muerte_electricidad"
+        },
+        {
+          "text": "Regresar a buscar un fusible en el sótano",
+          "next_node_id": "c2_inicio"
+        }
+      ]
+    },
+    "c2_muerte_electricidad": {
+      "text": "Unes dos cables gruesos. Una violenta descarga de miles de voltios atraviesa tu cuerpo, deteniendo tu corazón al instante. Caes al suelo humeante sin vida.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Reintentar desde el inicio del sótano",
+          "next_node_id": "c2_inicio"
+        }
+      ]
+    },
+    "c2_laboratorio_fusible": {
+      "text": "Insertas el fusible de alta potencia en la caja de control. Las luces parpadean fuertemente y la computadora del laboratorio se enciende con un pitido de sistema.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "flicker",
+      "unlock_trophy_id": "t_tecnico",
+      "options": [
+        {
+          "text": "Acceder a la computadora y activar la compuerta de escape",
+          "next_node_id": "c2_computadora_activa"
+        }
+      ]
+    },
+    "c2_computadora_activa": {
+      "text": "Tecleas febrilmente en la pantalla retroiluminada. Un mensaje parpadea en verde: 'Compuerta del ascensor desbloqueada'. Detrás de ti, las pesadas planchas de hierro del ascensor se separan con estrépito.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "shake",
+      "options": [
+        {
+          "text": "Entrar al ascensor de carga y pulsar el botón de subir",
+          "next_node_id": "c2_ascensor_escape"
+        }
+      ]
+    },
+    "c2_ascensor_escape": {
+      "text": "Entras al ascensor y pulsas el botón rojo. Las puertas se cierran de golpe y la cabina tiembla al ascender lentamente hacia la superficie del sanatorio.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "shake",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}

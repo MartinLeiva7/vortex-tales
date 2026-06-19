@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Local databases & development DB files
+backend/local.db
+backend/local.db-journal
+backend/local.db-shm
+backend/local.db-wal
+
+# Build artifacts
+backend/dist/
+frontend/dist/
+
+# Env & configuration files
+backend/.env
+.env
+.env*.local
+
+# System/IDE files
+.DS_Store
+.vscode/
+.idea/

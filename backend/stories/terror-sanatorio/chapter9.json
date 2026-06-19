@@ -1,0 +1,44 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 9,
+  "chapter_title": "Las Oficinas de Registro",
+  "start_node_id": "c9_inicio",
+  "trophies": [],
+  "nodes": {
+    "c9_inicio": {
+      "text": "Entras a la administración. Hay archivadores volcados y documentos médicos desparramados en el suelo. Es el lugar donde se almacenan las fichas del personal del hospital.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Buscar en el escritorio principal del director del hospital",
+          "next_node_id": "c9_ficha"
+        },
+        {
+          "text": "Intentar forzar los ventanales sellados de la oficina para escapar",
+          "next_node_id": "c9_muerte"
+        }
+      ]
+    },
+    "c9_muerte": {
+      "text": "Al intentar romper los ventanales de vidrio templado blindado, las vibraciones y el estruendo activan una ruidosa alarma perimetral silenciosa que atrae a la criatura en segundos.",
+      "ambient_sound": "audio/monster_jumpscare.mp3",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar en la oficina (Reintentar)",
+          "next_node_id": "c9_inicio"
+        }
+      ]
+    },
+    "c9_ficha": {
+      "text": "Encuentras una libreta negra de cuero. La última anotación dice: 'El portón principal de hierro responde al código de seguridad de evacuación militar: 4091'. Memorizas el código y sales sigilosamente hacia el quirófano clínico.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}

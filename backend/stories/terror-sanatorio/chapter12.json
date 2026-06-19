@@ -1,0 +1,54 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 12,
+  "chapter_title": "El Portón Principal",
+  "start_node_id": "c12_inicio",
+  "trophies": [
+    {
+      "id": "t_superviviente",
+      "title": "Luz del Amanecer",
+      "description": "Logra escapar del sanatorio abriendo la puerta principal con el código.",
+      "icon": "Sun"
+    },
+    {
+      "id": "t_heredero",
+      "title": "Heredero del Vórtice",
+      "description": "Toma la gema negra y asume el control del sanatorio.",
+      "icon": "Crown"
+    }
+  ],
+  "nodes": {
+    "c12_inicio": {
+      "text": "Llegas corriendo al portón de hierro en la planta baja. Las rejas se han abierto un par de metros, pero la criatura del sanatorio emerge de las sombras bloqueándote el paso. Sus ojos amarillos brillan con furia salvaje. Estás acorralado.",
+      "ambient_sound": "audio/ambience_terror_loop.mp3",
+      "visual_effect": "shake",
+      "options": [
+        {
+          "text": "Digitar apresuradamente el código '4091' en el panel de control del portón",
+          "next_node_id": "c12_escape_exitoso"
+        },
+        {
+          "text": "Canalizar la energía de la gema negra que tomaste en la capilla",
+          "next_node_id": "c12_gema_tomada"
+        }
+      ]
+    },
+    "c12_escape_exitoso": {
+      "text": "Introduces el código '4091' en el teclado numérico. El portón se abre por completo y corres desesperadamente hacia los bosques bajo los primeros rayos del amanecer. Logras escapar, libre de la negrura del sanatorio.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "checkpoint": true,
+      "unlock_trophy_id": "t_superviviente",
+      "options": []
+    },
+    "c12_gema_tomada": {
+      "text": "Sostienes la gema negra en tu mano y cierras los ojos. Una energía oscura fluye por tu cuerpo. La criatura se detiene y cae de rodillas ante ti con sumisión antes de desintegrarse en polvo. Eres el nuevo señor del Vórtice.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "red_flash",
+      "checkpoint": true,
+      "unlock_trophy_id": "t_heredero",
+      "options": []
+    }
+  }
+}

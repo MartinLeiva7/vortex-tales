@@ -1,0 +1,204 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 1,
+  "chapter_title": "El Despertar de las Sombras",
+  "start_node_id": "c1_inicio",
+  "trophies": [
+    {
+      "id": "t_despertar",
+      "title": "Retorno a la Consciencia",
+      "description": "Despierta en la camilla del sanatorio.",
+      "icon": "Eye"
+    },
+    {
+      "id": "t_primera_muerte",
+      "title": "Abrazo de la Oscuridad",
+      "description": "Sé devorado por las sombras del pasillo.",
+      "icon": "Skull"
+    },
+    {
+      "id": "t_escapista",
+      "title": "A contrarreloj",
+      "description": "Escapa del Bloque A corriendo por tu vida.",
+      "icon": "Zap"
+    },
+    {
+      "id": "t_sigilo",
+      "title": "Fantasma en la Niebla",
+      "description": "Escapa del Bloque A usando el armario de limpieza sin ser detectado.",
+      "icon": "Ghost"
+    },
+    {
+      "id": "t_infiltrado",
+      "title": "Infiltrado de Conductos",
+      "description": "Escapa del Bloque A arrastrándote por los conductos de ventilación.",
+      "icon": "Wind"
+    }
+  ],
+  "nodes": {
+    "c1_inicio": {
+      "text": "Despiertas sobre una camilla metálica oxidada. El olor a formaldehído y humedad te oprime el pecho. Una lámpara fluorescente en el techo parpadea erráticamente, arrojando sombras deformes en las paredes de azulejos rotos.",
+      "ambient_sound": "audio/ambience_asylum_hallway.mp3",
+      "visual_effect": "flicker",
+      "unlock_trophy_id": "t_despertar",
+      "options": [
+        {
+          "text": "Registrar el cajón de la mesa de metal contigua",
+          "next_node_id": "c1_cajon_registro"
+        },
+        {
+          "text": "Explorar el panel de control parpadeante del fondo",
+          "next_node_id": "c1_sala_control"
+        },
+        {
+          "text": "Cruzar la puerta semiabierta que da al pasillo principal",
+          "next_node_id": "c1_pasillo_oscuro"
+        }
+      ]
+    },
+    "c1_cajon_registro": {
+      "text": "El cajón metálico chirría fuertemente. Dentro encuentras una pequeña linterna de mano con pilas desgastadas y una nota arrugada que dice: 'No te detengas si escuchas pasos detrás de ti'. De repente, un golpe sordo retumba en el techo.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "shake",
+      "options": [
+        {
+          "text": "Guardar la linterna y salir rápidamente al pasillo",
+          "next_node_id": "c1_pasillo_linterna"
+        }
+      ]
+    },
+    "c1_sala_control": {
+      "text": "Te acercas a una consola llena de cables expuestos. Una pantalla estropeada muestra las cámaras del sanatorio: en una de ellas ves una figura alta con garras arrastrándose por el techo. Sobre el teclado hay una tarjeta de seguridad ensangrentada.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "flicker",
+      "options": [
+        {
+          "text": "Tomar la tarjeta de seguridad e ir al pasillo",
+          "next_node_id": "c1_pasillo_tarjeta"
+        },
+        {
+          "text": "Manipular los controles de la consola para encender las luces",
+          "next_node_id": "c1_jumpscare_control"
+        }
+      ]
+    },
+    "c1_jumpscare_control": {
+      "text": "Presionas un botón rojo. Chispas ardientes saltan de los circuitos y un cortocircuito apaga por completo las luces de la sala. En la penumbra, dos ojos amarillos brillan justo enfrente de ti, acompañados de una respiración gutural.",
+      "ambient_sound": "audio/monster_jumpscare.mp3",
+      "visual_effect": "red_flash",
+      "options": [
+        {
+          "text": "Intentar saltar hacia el pasillo oscuro",
+          "next_node_id": "c1_pasillo_oscuro"
+        },
+        {
+          "text": "Esconderte debajo de la consola de control",
+          "next_node_id": "c1_muerte_control"
+        }
+      ]
+    },
+    "c1_muerte_control": {
+      "text": "Te encoges bajo la mesa temblando de miedo. Un par de garras largas y afiladas rasgan el metal con facilidad, arrastrándote hacia la oscuridad. Tus gritos se pierden en el vacío.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "unlock_trophy_id": "t_primera_muerte",
+      "options": [
+        {
+          "text": "Despertar de nuevo en la camilla (Reintentar)",
+          "next_node_id": "c1_inicio"
+        }
+      ]
+    },
+    "c1_pasillo_oscuro": {
+      "text": "Avanzas a ciegas por el pasillo. La oscuridad es absoluta y el frío cala tus huesos. De la nada, una mano helada sujeta tu tobillo desde el suelo. Intentas gritar, pero el pánico te bloquea la garganta mientras eres arrastrado.",
+      "ambient_sound": "audio/monster_jumpscare.mp3",
+      "visual_effect": "red_flash",
+      "options": [
+        {
+          "text": "Dar patadas desesperadas para intentar liberarte",
+          "next_node_id": "c1_muerte_oscuridad"
+        }
+      ]
+    },
+    "c1_muerte_oscuridad": {
+      "text": "Tus esfuerzos son inútiles. La fuerza que te arrastra hacia la negrura es sobrehumana. Tus uñas se rompen contra las baldosas antes de que un dolor agudo en el pecho apague tu conciencia.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "unlock_trophy_id": "t_primera_muerte",
+      "options": [
+        {
+          "text": "Despertar de nuevo en la camilla (Reintentar)",
+          "next_node_id": "c1_inicio"
+        }
+      ]
+    },
+    "c1_pasillo_linterna": {
+      "text": "Enciendes la linterna. Su haz de luz revela un largo pasillo cubierto de camillas oxidadas y manchas negruzcas en el suelo. Al fondo del pasillo, una silueta desproporcionadamente alta se vuelve lentamente hacia ti.",
+      "ambient_sound": "audio/ambience_terror_loop.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Correr a toda velocidad hacia la puerta de emergencia al fondo",
+          "next_node_id": "c1_escape_emergencia"
+        },
+        {
+          "text": "Esconderte sigilosamente en el armario de limpieza cercano",
+          "next_node_id": "c1_armario_escondite"
+        }
+      ]
+    },
+    "c1_pasillo_tarjeta": {
+      "text": "Sales al pasillo con la tarjeta de seguridad. A tu izquierda ves una puerta reforzada con un panel electrónico que parpadea en rojo. A tu derecha, el pasillo se pierde en las profundidades oscuras de donde provienen pisadas.",
+      "ambient_sound": "audio/ambience_terror_loop.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Pasar la tarjeta de seguridad en la puerta reforzada",
+          "next_node_id": "c1_sala_segura"
+        },
+        {
+          "text": "Ignorar la puerta y correr hacia la oscuridad",
+          "next_node_id": "c1_pasillo_oscuro"
+        }
+      ]
+    },
+    "c1_sala_segura": {
+      "text": "El lector emite un pitido verde y la pesada puerta se desliza abriéndose. Te metes rápidamente y la puerta se cierra a tus espaldas. Estás en una oficina de archivo segura. Al fondo, ves un conducto de ventilación con la rejilla rota por donde entra aire fresco.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Trepar y entrar al conducto de ventilación",
+          "next_node_id": "c1_ducto_ventilacion"
+        }
+      ]
+    },
+    "c1_ducto_ventilacion": {
+      "text": "Te arrastras por el estrecho y polvoriento conducto metálico. Escuchas al monstruo golpear la puerta de la oficina abajo, pero el metal del conducto te protege. Avanzas hacia adelante hasta que el conducto cede y caes en el sótano del sanatorio.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "shake",
+      "checkpoint": true,
+      "unlock_trophy_id": "t_infiltrado",
+      "options": []
+    },
+    "c1_escape_emergencia": {
+      "text": "Corres con todas tus fuerzas. Los pasos de la criatura azotan el suelo justo detrás de ti. Empujas la barra de la puerta de hierro con desesperación; la puerta cede y sales trastabillando a las escaleras que bajan al sótano.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "shake",
+      "checkpoint": true,
+      "unlock_trophy_id": "t_escapista",
+      "options": []
+    },
+    "c1_armario_escondite": {
+      "text": "Te encierras en el armario de limpieza aguantando la respiración. A través de la rejilla ves pasar una silueta espantosa y huesuda. Una vez que sus pasos se alejan por completo, sales con sigilo y te deslizas por la puerta de emergencia.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "checkpoint": true,
+      "unlock_trophy_id": "t_sigilo",
+      "options": []
+    }
+  }
+}

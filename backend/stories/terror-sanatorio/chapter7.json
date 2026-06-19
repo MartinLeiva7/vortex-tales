@@ -1,0 +1,44 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 7,
+  "chapter_title": "La Capilla Profanada",
+  "start_node_id": "c7_inicio",
+  "trophies": [],
+  "nodes": {
+    "c7_inicio": {
+      "text": "Bajas a una capilla en ruinas con bancos alineados hacia un altar central. En el centro del altar, una extraña gema negra flota en el aire, vibrando con un sutil zumbido hipnótico.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "flicker",
+      "options": [
+        {
+          "text": "Rodear el altar sigilosamente y buscar la puerta trasera",
+          "next_node_id": "c7_salida"
+        },
+        {
+          "text": "Intentar tocar la gema flotante para ver qué es",
+          "next_node_id": "c7_muerte"
+        }
+      ]
+    },
+    "c7_muerte": {
+      "text": "Una descarga de energía helada brota de la gema negra al tocarla. El frío paraliza instantáneamente tus venas y detiene tu respiración mientras tu cuerpo cae rígido como el mármol.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar en la capilla (Reintentar)",
+          "next_node_id": "c7_inicio"
+        }
+      ]
+    },
+    "c7_salida": {
+      "text": "Consigues evadir la tentación de la gema y avanzas hacia el arco trasero. Encuentras la puerta de reja que da acceso directo a las celdas de aislamiento del pabellón psiquiátrico.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}

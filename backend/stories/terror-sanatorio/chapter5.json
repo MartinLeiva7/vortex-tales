@@ -1,0 +1,44 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 5,
+  "chapter_title": "La Morgue Fría",
+  "start_node_id": "c5_inicio",
+  "trophies": [],
+  "nodes": {
+    "c5_inicio": {
+      "text": "La morgue está sumida en un frío gélido. Filas de cajones metálicos se extienden en las paredes. Uno de los cajones de metal en el centro de la sala se encuentra entreabierto.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Inspeccionar el cajón abierto de la morgue",
+          "next_node_id": "c5_objeto"
+        },
+        {
+          "text": "Ignorar los cajones e intentar cruzar hacia la puerta del patio exterior",
+          "next_node_id": "c5_muerte"
+        }
+      ]
+    },
+    "c5_muerte": {
+      "text": "Al intentar pasar de largo, el cajón de la morgue se abre violentamente de golpe. Un brazo helado y purulento se estira y te arrastra con fuerza sobrehumana hacia la negrura interior del cajón, sellándote vivo.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar en la morgue (Reintentar)",
+          "next_node_id": "c5_inicio"
+        }
+      ]
+    },
+    "c5_objeto": {
+      "text": "Dentro del cajón encuentras un bisturí quirúrgico afilado de plata y una llave del patio exterior colgada de una cadena. Te apresuras hacia la puerta trasera del patio central.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}

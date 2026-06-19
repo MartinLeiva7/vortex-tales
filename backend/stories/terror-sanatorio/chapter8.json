@@ -1,0 +1,44 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 8,
+  "chapter_title": "Celdas de Aislamiento",
+  "start_node_id": "c8_inicio",
+  "trophies": [],
+  "nodes": {
+    "c8_inicio": {
+      "text": "Los pasillos del bloque de celdas de aislamiento están tapizados de material acolchado podrido. De algunas puertas cerradas provienen susurros desquiciados que de inmediato te causan náuseas.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "flicker",
+      "options": [
+        {
+          "text": "Tapar tus oídos y avanzar directamente al fondo del bloque",
+          "next_node_id": "c8_salida"
+        },
+        {
+          "text": "Acercarte a espiar por la pequeña rejilla de la celda 103",
+          "next_node_id": "c8_muerte"
+        }
+      ]
+    },
+    "c8_muerte": {
+      "text": "Una mirada a través de la rejilla te sume en la locura más absoluta al observar una figura incomprensible sonreírte en la penumbra. Tu mente colapsa y caes catatónico en el suelo.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar al inicio del pabellón (Reintentar)",
+          "next_node_id": "c8_inicio"
+        }
+      ]
+    },
+    "c8_salida": {
+      "text": "Mantienes la vista fija al frente y avanzas a paso veloz por el corredor hasta cruzar la compuerta metálica que lleva a las oficinas administrativas del sanatorio.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "none",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}

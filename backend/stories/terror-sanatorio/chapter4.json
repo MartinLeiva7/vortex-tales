@@ -1,0 +1,55 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 4,
+  "chapter_title": "El Laboratorio Olvidado",
+  "start_node_id": "c4_inicio",
+  "trophies": [],
+  "nodes": {
+    "c4_inicio": {
+      "text": "El ala de laboratorios es estéril, fría y está llena de frascos de reactivos químicos destrozados. Las terminales apagadas reflejan tu rostro asustado. Una de las pantallas de control muestra una advertencia de fuga de presión.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "flicker",
+      "options": [
+        {
+          "text": "Investigar la consola de presión de nitrógeno",
+          "next_node_id": "c4_consola"
+        }
+      ]
+    },
+    "c4_consola": {
+      "text": "La consola de control de gas nitrógeno tiene una palanca de emergencia de color amarillo. Detrás de ti, escuchas a una criatura arañando furiosamente las tuberías del techo, buscando una entrada.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "none",
+      "options": [
+        {
+          "text": "Girar la palanca de presión de nitrógeno para purgar el sector",
+          "next_node_id": "c4_escape"
+        },
+        {
+          "text": "Intentar desconectar los cables de la consola para apagar las alarmas",
+          "next_node_id": "c4_muerte"
+        }
+      ]
+    },
+    "c4_muerte": {
+      "text": "Al tirar de los cables expuestos, una descarga eléctrica de alto voltaje recorre tu cuerpo, deteniendo tu corazón en el acto. Caes al suelo cubierto de chispas.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar al inicio del laboratorio (Reintentar)",
+          "next_node_id": "c4_inicio"
+        }
+      ]
+    },
+    "c4_escape": {
+      "text": "Un silbido ensordecedor llena la sala cuando el gas nitrógeno se purga por las tuberías, ahuyentando a la criatura del techo. Te deslizas rápidamente por la compuerta que da a la morgue.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "shake",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}

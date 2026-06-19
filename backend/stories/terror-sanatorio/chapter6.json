@@ -1,0 +1,44 @@
+{
+  "story_id": "terror-sanatorio",
+  "story_title": "Vórtice del Silencio",
+  "chapter_number": 6,
+  "chapter_title": "El Patio de Recreo",
+  "start_node_id": "c6_inicio",
+  "trophies": [],
+  "nodes": {
+    "c6_inicio": {
+      "text": "Sales al aire libre. La niebla en el patio del sanatorio es tan densa que apenas puedes ver tus propios pasos. En el centro exacto se yergue una estatua desgastada de un ángel llorón.",
+      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "visual_effect": "flicker",
+      "options": [
+        {
+          "text": "Acercarte a examinar la estatua de mármol",
+          "next_node_id": "c6_estatua"
+        },
+        {
+          "text": "Correr a ciegas a través de la niebla buscando el portón",
+          "next_node_id": "c6_muerte"
+        }
+      ]
+    },
+    "c6_muerte": {
+      "text": "Te desorientas en la densa niebla nocturna. De la penumbra surge repentinamente una figura alta y famélica que te atrapa por la espalda antes de que puedas emitir un sonido.",
+      "ambient_sound": "audio/game_over.mp3",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar al inicio del patio (Reintentar)",
+          "next_node_id": "c6_inicio"
+        }
+      ]
+    },
+    "c6_estatua": {
+      "text": "Al tocar las manos unidas del ángel de mármol, escuchas un clic metálico. La base de la estatua se desplaza lateralmente hacia el suelo, revelando unos escalones de piedra que conducen a la antigua capilla del sanatorio.",
+      "ambient_sound": "audio/ambience_relief.mp3",
+      "visual_effect": "shake",
+      "checkpoint": true,
+      "options": []
+    }
+  }
+}
