@@ -26,8 +26,9 @@
   ],
   "nodes": {
     "c2_inicio": {
-      "text": "Llegas rodando al suelo frío del sótano. El aire aquí abajo es denso, húmedo y huele a carne podrida. Delante de ti se abren tres caminos: un pasillo lleno de tuberías sibilantes, la morgue a la izquierda y lo que parece un laboratorio clínico a la derecha.",
-      "ambient_sound": "audio/ambience_basylum_basement.mp3",
+      "text": "Llegas rodando al suelo de hormigón frío del sótano, sintiendo cómo la humedad cala tus huesos de inmediato. El aire aquí abajo es espeso, helado y está impregnado de un hedor repugnante que recuerda a la descomposición de materia orgánica. Al incorporarte con dificultad, la débil luz revela tres caminos sombríos: un pasillo estrecho atestado de tuberías sibilantes que escupen vapor, la entrada oscura hacia la morgue a tu izquierda, y el acceso a lo que parece ser un antiguo laboratorio clínico sumido en la penumbra a tu derecha.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.",
+      "ambient_sound": "audio/terror-sanatorio/ch2/ambience_basylum_basement.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_inicio.jpg",
       "visual_effect": "none",
       "options": [
         {
@@ -45,8 +46,9 @@
       ]
     },
     "c2_pasillo_tuberias": {
-      "text": "Avanzas por el pasillo. Una de las tuberías principales está rota y expulsa chorros de vapor hirviendo a alta presión, bloqueando completamente el camino. En la pared lateral distingues una válvula metálica de cierre rápido.",
-      "ambient_sound": "audio/ambience_steam_loop.mp3",
+      "text": "Avanzas con cautela por el estrecho corredor de mantenimiento. A mitad del camino, una de las tuberías principales de alta presión se ha reventado, expulsando densas nubes de vapor hirviendo que sisean con violencia y bloquean por completo cualquier avance. El calor en el área es sofocante y el vapor empaña tu vista, pero incrustada en la pared lateral, logras distinguir la silueta de una pesada válvula metálica de cierre rápido cubierta de óxido.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.",
+      "ambient_sound": "audio/terror-sanatorio/ch2/ambience_steam_loop.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_vapor.jpg",
       "visual_effect": "flicker",
       "options": [
         {
@@ -60,8 +62,9 @@
       ]
     },
     "c2_muerte_vapor": {
-      "text": "Corres hacia el vapor. El calor extremo derrite instantáneamente tu piel y llena tus pulmones de aire abrasador. Tropiezas y caes al suelo, consumido por un dolor inimaginable. Tu viaje termina aquí.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Corres hacia el vapor. El calor extremo derrite instantáneamente tu piel y llena tus pulmones de aire abrasador. Tropiezas y caes al suelo, consumido por un dolor inimaginable. Tu viaje termina aquí.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "red_flash",
       "is_death_node": true,
       "options": [
@@ -72,8 +75,9 @@
       ]
     },
     "c2_valvula": {
-      "text": "Usas todas tus fuerzas para girar la válvula oxidada. Con un crujido chirriante, el chorro de vapor disminuye hasta cesar. Detrás de la cortina de vapor, revelas un nicho en la pared con un interruptor eléctrico antiguo.",
-      "ambient_sound": "audio/ambience_basylum_basement.mp3",
+      "text": "Apoyas todo tu peso y aplicas fuerza bruta sobre la válvula oxidada. Tras unos segundos de resistencia extrema en los que el metal rechina con rabia, la palanca cede finalmente y el chorro de vapor cesa por completo, revelando el camino despejado. Al disiparse la neblina caliente, notas que en la pared lateral, justo detrás de donde estaba la fuga, hay un pequeño nicho de ladrillo visto que oculta un interruptor eléctrico antiguo cubierto de polvo.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.",
+      "ambient_sound": "audio/terror-sanatorio/ch2/ambience_basylum_basement.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_vapor.jpg",
       "visual_effect": "none",
       "options": [
         {
@@ -87,8 +91,9 @@
       ]
     },
     "c2_mecanismo_activado": {
-      "text": "Tiras de la palanca. Un eco mecánico resuena en las paredes del sótano. Escuchas el sonido metálico de una reja abriéndose en la dirección de la morgue.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Tiras de la palanca. Un eco mecánico resuena en las paredes del sótano. Escuchas el sonido metálico de una reja abriéndose en la dirección de la morgue.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl eco del sonido reverbera en el vacío del corredor, despertando temores ancestrales en lo más profundo de tu conciencia. Algo te acecha desde la penumbra, y la distancia que los separa parece acortarse con cada latido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_inicio.jpg",
       "visual_effect": "shake",
       "options": [
         {
@@ -98,8 +103,9 @@
       ]
     },
     "c2_morgue": {
-      "text": "La morgue tiene camillas con bolsas para cadáveres alineadas. El frío es congelante. En una camilla central, una de las bolsas negras se agita levemente, como si algo adentro respirara con dificultad.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "La morgue tiene camillas con bolsas para cadáveres alineadas. El frío es congelante. En una camilla central, una de las bolsas negras se agita levemente, como si algo adentro respirara con dificultad.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl mobiliario oxidado y las manchas indescifrables en las paredes atestiguan el sufrimiento silencioso de quienes alguna vez estuvieron encerrados aquí, dejando ecos de su agonía flotando en el ambiente.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_morgue.jpg",
       "visual_effect": "flicker",
       "options": [
         {
@@ -113,8 +119,9 @@
       ]
     },
     "c2_bolsa_abierta": {
-      "text": "Abres la cremallera despacio. Un hombre infectado de ojos blancos y mandíbula dislocada salta sobre ti con un grito salvaje. Sus manos se dirigen directo a tu cuello para estrangularte.",
-      "ambient_sound": "audio/monster_jumpscare.mp3",
+      "text": "Abres la cremallera despacio. Un hombre infectado de ojos blancos y mandíbula dislocada salta sobre ti con un grito salvaje. Sus manos se dirigen directo a tu cuello para estrangularte.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nLa presencia del ser maldito satura el ambiente con un hedor a muerte y descomposición, paralizando tus músculos por un instante y forzándote a tomar decisiones al límite de la cordura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/monster_jumpscare.mp3",
+      "image": "images/terror-sanatorio/shared/infected_jumpscare.jpg",
       "visual_effect": "red_flash",
       "options": [
         {
@@ -128,8 +135,9 @@
       ]
     },
     "c2_muerte_infeccion": {
-      "text": "El infectado es demasiado rápido y fuerte. Te derriba contra el suelo de hormigón y clava sus dientes en tu cuello. La infección se esparce por tus venas en segundos mientras tus ojos se apagan.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "El infectado es demasiado rápido y fuerte. Te derriba contra el suelo de hormigón y clava sus dientes en tu cuello. La infección se esparce por tus venas en segundos mientras tus ojos se apagan.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "options": [
@@ -140,8 +148,9 @@
       ]
     },
     "c2_pelea_ganada": {
-      "text": "Tus dedos tocan el mango de un bisturí metálico. Lo clavas con fuerza en el cráneo del infectado. El cuerpo se desmorona sobre ti y queda inmóvil. Al registrar los bolsillos de su bata, encuentras un fusible de alta potencia intacto.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Tus dedos tocan el mango de un bisturí metálico. Lo clavas con fuerza en el cráneo del infectado. El cuerpo se desmorona sobre ti y queda inmóvil. Al registrar los bolsillos de su bata, encuentras un fusible de alta potencia intacto junto con una nota arrugada que dice: 'Terminal: ZETA-9'.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_morgue.jpg",
       "visual_effect": "none",
       "unlock_trophy_id": "t_superviviente_morgue",
       "options": [
@@ -152,8 +161,9 @@
       ]
     },
     "c2_archivadores": {
-      "text": "Evitas la camilla y abres los archivadores oxidados. Encuentras reportes de experimentos sobre la gema negra 'Vórtice'. Entre los papeles encuentras una tarjeta llave con un fusible de alta potencia tirado en el suelo.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Evitas la camilla y abres los archivadores oxidados. Encuentras reportes de experimentos sobre la gema negra 'Vórtice', marcados con una clave manuscrita: 'Terminal: ZETA-9'. Entre los papeles encuentras una tarjeta llave con un fusible de alta potencia tirado en el suelo.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl mobiliario oxidado y las manchas indescifrables en las paredes atestiguan el sufrimiento silencioso de quienes alguna vez estuvieron encerrados aquí, dejando ecos de su agonía flotando en el ambiente.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_morgue.jpg",
       "visual_effect": "none",
       "unlock_trophy_id": "t_morgue_explorador",
       "options": [
@@ -164,8 +174,9 @@
       ]
     },
     "c2_laboratorio": {
-      "text": "En el laboratorio hay terminales informáticas apagadas. Al fondo, una compuerta metálica pesada bloquea el ascensor de carga. Una consola de control muestra el texto: 'Suministro eléctrico del panel de control apagado'. Faltan fusibles en la caja de fusibles lateral.",
-      "ambient_sound": "audio/ambience_basylum_basement.mp3",
+      "text": "En el laboratorio hay terminales informáticas apagadas. Al fondo, una compuerta metálica pesada bloquea el ascensor de carga. Una consola de control muestra el texto: 'Suministro eléctrico del panel de control apagado'. Faltan fusibles en la caja de fusibles lateral.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.",
+      "ambient_sound": "audio/terror-sanatorio/ch2/ambience_basylum_basement.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_laboratorio.jpg",
       "visual_effect": "none",
       "options": [
         {
@@ -179,8 +190,9 @@
       ]
     },
     "c2_muerte_electricidad": {
-      "text": "Unes dos cables gruesos. Una violenta descarga de miles de voltios atraviesa tu cuerpo, deteniendo tu corazón al instante. Caes al suelo humeante sin vida.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Unes dos cables gruesos. Una violenta descarga de miles de voltios atraviesa tu cuerpo, deteniendo tu corazón al instante. Caes al suelo humeante sin vida.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "red_flash",
       "is_death_node": true,
       "options": [
@@ -191,20 +203,48 @@
       ]
     },
     "c2_laboratorio_fusible": {
-      "text": "Insertas el fusible de alta potencia en la caja de control. Las luces parpadean fuertemente y la computadora del laboratorio se enciende con un pitido de sistema.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Insertas el fusible de alta potencia en la caja de control. Las luces parpadean fuertemente y la computadora del laboratorio se enciende con un pitido de sistema.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_laboratorio.jpg",
       "visual_effect": "flicker",
       "unlock_trophy_id": "t_tecnico",
       "options": [
         {
-          "text": "Acceder a la computadora y activar la compuerta de escape",
-          "next_node_id": "c2_computadora_activa"
+          "text": "Acceder a la terminal de la computadora",
+          "next_node_id": "c2_computadora_login"
+        }
+      ]
+    },
+    "c2_computadora_login": {
+      "text": "La terminal del laboratorio brilla en verde. Un prompt en la pantalla de comandos parpadea: 'INGRESE CLAVE DE SEGURIDAD DE ADMINISTRADOR PARA LIBERAR COMPUERTA'.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_laboratorio.jpg",
+      "visual_effect": "flicker",
+      "options": [],
+      "input_challenge": {
+        "placeholder": "Ingrese la clave (ej. ALFA-1)...",
+        "correct_answer": "ZETA-9",
+        "success_node_id": "c2_computadora_activa",
+        "fail_node_id": "c2_computadora_bloqueada"
+      }
+    },
+    "c2_computadora_bloqueada": {
+      "text": "Clave incorrecta. La pantalla parpadea en rojo con un mensaje de alerta de seguridad. Un sonido metálico retumba y las compuertas del laboratorio se bloquean herméticamente, mientras un gas letal comienza a llenar la sala de forma fulminante.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Reintentar desde el inicio del sótano",
+          "next_node_id": "c2_inicio"
         }
       ]
     },
     "c2_computadora_activa": {
-      "text": "Tecleas febrilmente en la pantalla retroiluminada. Un mensaje parpadea en verde: 'Compuerta del ascensor desbloqueada'. Detrás de ti, las pesadas planchas de hierro del ascensor se separan con estrépito.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Tecleas febrilmente en la pantalla retroiluminada. Un mensaje parpadea en verde: 'Compuerta del ascensor desbloqueada'. Detrás de ti, las pesadas planchas de hierro del ascensor se separan con estrépito.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nLa luz titilante proyecta siluetas monstruosas y distorsionadas contra el moho de los muros, haciendo que cada esquina oscura parezca ocultar una amenaza mortal que espera el momento exacto para atacar.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_laboratorio.jpg",
       "visual_effect": "shake",
       "options": [
         {
@@ -214,8 +254,9 @@
       ]
     },
     "c2_ascensor_escape": {
-      "text": "Entras al ascensor y pulsas el botón rojo. Las puertas se cierran de golpe y la cabina tiembla al ascender lentamente hacia la superficie del sanatorio.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Entras al ascensor y pulsas el botón rojo. Las puertas se cierran de golpe y la cabina tiembla al ascender lentamente hacia la superficie del sanatorio.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl eco del sonido reverbera en el vacío del corredor, despertando temores ancestrales en lo más profundo de tu conciencia. Algo te acecha desde la penumbra, y la distancia que los separa parece acortarse con cada latido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch2/c2_ascensor.jpg",
       "visual_effect": "shake",
       "checkpoint": true,
       "options": []

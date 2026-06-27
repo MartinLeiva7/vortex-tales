@@ -7,8 +7,9 @@
   "trophies": [],
   "nodes": {
     "c7_inicio": {
-      "text": "Bajas a una capilla en ruinas con bancos alineados hacia un altar central. En el centro del altar, una extraña gema negra flota en el aire, vibrando con un sutil zumbido hipnótico.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Bajas a una capilla en ruinas con bancos alineados hacia un altar central. En el centro del altar, una extraña gema negra flota en el aire, vibrando con un sutil zumbido hipnótico.\n\nEl zumbido de la gema negra vibra en tus oídos como un canto de sirena que nubla tu juicio y debilita tu voluntad.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch7/c7_capilla.jpg",
       "visual_effect": "flicker",
       "options": [
         {
@@ -22,8 +23,9 @@
       ]
     },
     "c7_muerte": {
-      "text": "Una descarga de energía helada brota de la gema negra al tocarla. El frío paraliza instantáneamente tus venas y detiene tu respiración mientras tu cuerpo cae rígido como el mármol.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Una descarga de energía helada brota de la gema negra al tocarla. El frío paraliza instantáneamente tus venas y detiene tu respiración mientras tu cuerpo cae rígido como el mármol.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "options": [
@@ -34,8 +36,9 @@
       ]
     },
     "c7_salida": {
-      "text": "Consigues evadir la tentación de la gema y avanzas hacia el arco trasero. Encuentras la puerta de reja que da acceso directo a las celdas de aislamiento del pabellón psiquiátrico.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Consigues evadir la tentación de la gema y avanzas hacia el arco trasero. Encuentras la puerta de reja que da acceso directo a las celdas de aislamiento del pabellón psiquiátrico.\n\nTe obligas a apartar la mirada de la gema, sabiendo que retrasarte un solo instante significaría caer bajo su influjo eterno.\n\nLos bancos de la capilla deshechos y las imágenes sagradas profanadas dan fe de la locura que se desató en este lugar de oración.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch7/c7_salida.jpg",
       "visual_effect": "none",
       "checkpoint": true,
       "options": []

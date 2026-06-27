@@ -7,8 +7,9 @@
   "trophies": [],
   "nodes": {
     "c8_inicio": {
-      "text": "Los pasillos del bloque de celdas de aislamiento están tapizados de material acolchado podrido. De algunas puertas cerradas provienen susurros desquiciados que de inmediato te causan náuseas.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Los pasillos del bloque de celdas de aislamiento están tapizados de material acolchado podrido. De algunas puertas cerradas provienen susurros desquiciados que de inmediato te causan náuseas.\n\nEl acolchado podrido de los muros absorbe todos los sonidos, creando un silencio artificial y opresivo que aturde tus sentidos.\n\nLas camisas de fuerza abandonadas y las correas de cuero rotas sugieren que los pacientes lucharon desesperadamente antes del fin.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch8/c8_pasillo.jpg",
       "visual_effect": "flicker",
       "options": [
         {
@@ -22,8 +23,9 @@
       ]
     },
     "c8_muerte": {
-      "text": "Una mirada a través de la rejilla te sume en la locura más absoluta al observar una figura incomprensible sonreírte en la penumbra. Tu mente colapsa y caes catatónico en el suelo.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Una mirada a través de la rejilla te sume en la locura más absoluta al observar una figura incomprensible sonreírte en la penumbra. Tu mente colapsa y caes catatónico en el suelo.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "options": [
@@ -34,8 +36,9 @@
       ]
     },
     "c8_salida": {
-      "text": "Mantienes la vista fija al frente y avanzas a paso veloz por el corredor hasta cruzar la compuerta metálica que lleva a las oficinas administrativas del sanatorio.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Mantienes la vista fija al frente y avanzas a paso veloz por el corredor hasta cruzar la compuerta metálica que lleva a las oficinas administrativas del sanatorio.\n\nCorres por el pasillo sin mirar atrás, con la sensación constante de que unos dedos invisibles rozan la parte posterior de tu cuello.\n\nLas manchas oscuras en el suelo marcan el sendero de aquellos que intentaron escapar de las celdas sin éxito alguno.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch8/c8_puerta_oficina.jpg",
       "visual_effect": "none",
       "checkpoint": true,
       "options": []

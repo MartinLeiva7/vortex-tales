@@ -6,16 +6,20 @@ export function usePlaytime(storyId: string | null, token: string | null, initia
   const [totalPlaytime, setTotalPlaytime] = useState(initialPlaytime);
   const unsyncedSecondsRef = useRef(0);
 
+  const lastResetRef = useRef(Date.now());
+
   // Sync if initialPlaytime gets populated/changed by loading state
   useEffect(() => {
     setTotalPlaytime(initialPlaytime);
     unsyncedSecondsRef.current = 0;
+    lastResetRef.current = Date.now();
   }, [initialPlaytime]);
 
   useEffect(() => {
     if (!storyId || !token) return;
 
     const syncPlaytime = async () => {
+      const syncTime = Date.now();
       const secondsToSync = unsyncedSecondsRef.current;
       if (secondsToSync === 0) return;
 
@@ -30,11 +34,16 @@ export function usePlaytime(storyId: string | null, token: string | null, initia
         });
 
         if (response.ok) {
-          unsyncedSecondsRef.current -= secondsToSync;
+          // Discard sync response if a reset occurred during the network call
+          if (syncTime < lastResetRef.current) {
+            return;
+          }
+
+          unsyncedSecondsRef.current = Math.max(0, unsyncedSecondsRef.current - secondsToSync);
           const data = await response.json();
           if (data && typeof data.playtimeSeconds === 'number') {
             // Re-sync local state with server state + any ticks accumulated since sync started
-            setTotalPlaytime(data.playtimeSeconds + unsyncedSecondsRef.current);
+            setTotalPlaytime(Math.max(0, data.playtimeSeconds + unsyncedSecondsRef.current));
           }
         }
       } catch (err) {

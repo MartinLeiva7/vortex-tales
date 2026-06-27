@@ -38,8 +38,9 @@
   ],
   "nodes": {
     "c1_inicio": {
-      "text": "Despiertas sobre una camilla metálica oxidada. El olor a formaldehído y humedad te oprime el pecho. Una lámpara fluorescente en el techo parpadea erráticamente, arrojando sombras deformes en las paredes de azulejos rotos.",
-      "ambient_sound": "audio/ambience_asylum_hallway.mp3",
+      "text": "Despiertas sobre una camilla metálica oxidada. El olor a formaldehído y humedad te oprime el pecho. Una lámpara fluorescente en el techo parpadea erráticamente, arrojando sombras deformes en las paredes de azulejos rotos.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl mobiliario oxidado y las manchas indescifrables en las paredes atestiguan el sufrimiento silencioso de quienes alguna vez estuvieron encerrados aquí, dejando ecos de su agonía flotando en el ambiente.\n\nLa luz titilante proyecta siluetas monstruosas y distorsionadas contra el moho de los muros, haciendo que cada esquina oscura parezca ocultar una amenaza mortal que espera el momento exacto para atacar.\n\nLa presencia del ser maldito satura el ambiente con un hedor a muerte y descomposición, paralizando tus músculos por un instante y forzándote a tomar decisiones al límite de la cordura.",
+      "ambient_sound": "audio/terror-sanatorio/ch1/viento_helado.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_inicio.jpg",
       "visual_effect": "flicker",
       "unlock_trophy_id": "t_despertar",
       "options": [
@@ -58,8 +59,9 @@
       ]
     },
     "c1_cajon_registro": {
-      "text": "El cajón metálico chirría fuertemente. Dentro encuentras una pequeña linterna de mano con pilas desgastadas y una nota arrugada que dice: 'No te detengas si escuchas pasos detrás de ti'. De repente, un golpe sordo retumba en el techo.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "El cajón metálico chirría con un chirrido agudo que corta el aire. Al registrar su interior, tus dedos rozan el metal oxidado hasta dar con una pequeña linterna de mano metálica con las pilas visiblemente desgastadas. Junto a ella, descubres una nota de papel arrugado y amarillento por el tiempo, escrita con pulso tembloroso: 'No te detengas si escuchas pasos detrás de ti. Ellos nunca duermen'. De repente, un golpe sordo y pesado retumba en las tuberías del techo justo sobre tu cabeza, desprendiendo motas de polvo y moho que caen sobre tus hombros.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl eco del sonido reverbera en el vacío del corredor, despertando temores ancestrales en lo más profundo de tu conciencia. Algo te acecha desde la penumbra, y la distancia que los separa parece acortarse con cada latido.\n\nLa luz titilante proyecta siluetas monstruosas y distorsionadas contra el moho de los muros, haciendo que cada esquina oscura parezca ocultar una amenaza mortal que espera el momento exacto para atacar.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_cajon.jpg",
       "visual_effect": "shake",
       "options": [
         {
@@ -69,8 +71,9 @@
       ]
     },
     "c1_sala_control": {
-      "text": "Te acercas a una consola llena de cables expuestos. Una pantalla estropeada muestra las cámaras del sanatorio: en una de ellas ves una figura alta con garras arrastrándose por el techo. Sobre el teclado hay una tarjeta de seguridad ensangrentada.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Te aproximas lentamente a una pesada consola de control cuyos cables expuestos chisporrotean débilmente con un zumbido eléctrico molesto. La pantalla central, agrietada y cubierta de polvo, muestra la señal estática de una de las cámaras de seguridad del ala este: en ella, logras distinguir una silueta desproporcionadamente alta y delgada que se arrastra con movimientos antinaturales por el techo del corredor contiguo. Sobre el panel de control, justo al lado de los interruptores de emergencia, reposa una tarjeta plástica de seguridad manchada de sangre fresca.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nLa presencia del ser maldito satura el ambiente con un hedor a muerte y descomposición, paralizando tus músculos por un instante y forzándote a tomar decisiones al límite de la cordura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_sala_control.jpg",
       "visual_effect": "flicker",
       "options": [
         {
@@ -84,8 +87,9 @@
       ]
     },
     "c1_jumpscare_control": {
-      "text": "Presionas un botón rojo. Chispas ardientes saltan de los circuitos y un cortocircuito apaga por completo las luces de la sala. En la penumbra, dos ojos amarillos brillan justo enfrente de ti, acompañados de una respiración gutural.",
-      "ambient_sound": "audio/monster_jumpscare.mp3",
+      "text": "Presionas el botón rojo con desesperación. Al instante, un restallido de chispas ardientes brota de los circuitos internos y un cortocircuito violento apaga las pocas luces parpadeantes que quedaban, sumiendo la sala en una penumbra casi absoluta. En medio de la oscuridad repentina, el silencio es roto por una respiración gutural y pesada a escasos centímetros de ti; al levantar la vista, dos ojos amarillos y brillantes te observan fijamente desde la oscuridad del rincón, reflejando una hostilidad salvaje.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl mobiliario oxidado y las manchas indescifrables en las paredes atestiguan el sufrimiento silencioso de quienes alguna vez estuvieron encerrados aquí, dejando ecos de su agonía flotando en el ambiente.\n\nLa presencia del ser maldito satura el ambiente con un hedor a muerte y descomposición, paralizando tus músculos por un instante y forzándote a tomar decisiones al límite de la cordura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/monster_jumpscare.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_jumpscare.jpg",
       "visual_effect": "red_flash",
       "options": [
         {
@@ -99,8 +103,9 @@
       ]
     },
     "c1_muerte_control": {
-      "text": "Te encoges bajo la mesa temblando de miedo. Un par de garras largas y afiladas rasgan el metal con facilidad, arrastrándote hacia la oscuridad. Tus gritos se pierden en el vacío.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Te encoges bajo la mesa temblando de miedo. Un par de garras largas y afiladas rasgan el metal con facilidad, arrastrándote hacia la oscuridad. Tus gritos se pierden en el vacío.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "unlock_trophy_id": "t_primera_muerte",
@@ -112,8 +117,9 @@
       ]
     },
     "c1_pasillo_oscuro": {
-      "text": "Avanzas a ciegas por el pasillo. La oscuridad es absoluta y el frío cala tus huesos. De la nada, una mano helada sujeta tu tobillo desde el suelo. Intentas gritar, pero el pánico te bloquea la garganta mientras eres arrastrado.",
-      "ambient_sound": "audio/monster_jumpscare.mp3",
+      "text": "Avanzas a ciegas por el pasillo. La oscuridad es absoluta y el frío cala tus huesos. De la nada, una mano helada sujeta tu tobillo desde el suelo. Intentas gritar, pero el pánico te bloquea la garganta mientras eres arrastrado.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/monster_jumpscare.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_jumpscare.jpg",
       "visual_effect": "red_flash",
       "options": [
         {
@@ -123,8 +129,9 @@
       ]
     },
     "c1_muerte_oscuridad": {
-      "text": "Tus esfuerzos son inútiles. La fuerza que te arrastra hacia la negrura es sobrehumana. Tus uñas se rompen contra las baldosas antes de que un dolor agudo en el pecho apague tu conciencia.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Tus esfuerzos son inútiles. La fuerza que te arrastra hacia la negrura es sobrehumana. Tus uñas se rompen contra las baldosas antes de que un dolor agudo en el pecho apague tu conciencia.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "unlock_trophy_id": "t_primera_muerte",
@@ -136,8 +143,9 @@
       ]
     },
     "c1_pasillo_linterna": {
-      "text": "Enciendes la linterna. Su haz de luz revela un largo pasillo cubierto de camillas oxidadas y manchas negruzcas en el suelo. Al fondo del pasillo, una silueta desproporcionadamente alta se vuelve lentamente hacia ti.",
-      "ambient_sound": "audio/ambience_terror_loop.mp3",
+      "text": "Enciendes la linterna. Su haz de luz reveals un largo pasillo cubierto de camillas oxidadas y manchas negruzcas en el suelo. Al fondo del pasillo, una silueta desproporcionadamente alta se vuelve lentamente hacia ti.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl mobiliario oxidado y las manchas indescifrables en las paredes atestiguan el sufrimiento silencioso de quienes alguna vez estuvieron encerrados aquí, dejando ecos de su agonía flotando en el ambiente.\n\nLa luz titilante proyecta siluetas monstruosas y distorsionadas contra el moho de los muros, haciendo que cada esquina oscura parezca ocultar una amenaza mortal que espera el momento exacto para atacar.\n\nLa presencia del ser maldito satura el ambiente con un hedor a muerte y descomposición, paralizando tus músculos por un instante y forzándote a tomar decisiones al límite de la cordura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_terror_loop.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_pasillo_linterna.jpg",
       "visual_effect": "none",
       "options": [
         {
@@ -151,8 +159,9 @@
       ]
     },
     "c1_pasillo_tarjeta": {
-      "text": "Sales al pasillo con la tarjeta de seguridad. A tu izquierda ves una puerta reforzada con un panel electrónico que parpadea en rojo. A tu derecha, el pasillo se pierde en las profundidades oscuras de donde provienen pisadas.",
-      "ambient_sound": "audio/ambience_terror_loop.mp3",
+      "text": "Sales al pasillo con la tarjeta de seguridad. A tu izquierda ves una puerta reforzada con un panel electrónico que parpadea en rojo. A tu derecha, el pasillo se pierde en las profundidades oscuras de donde provienen pisadas.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_terror_loop.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_pasillo_linterna.jpg",
       "visual_effect": "none",
       "options": [
         {
@@ -166,8 +175,9 @@
       ]
     },
     "c1_sala_segura": {
-      "text": "El lector emite un pitido verde y la pesada puerta se desliza abriéndose. Te metes rápidamente y la puerta se cierra a tus espaldas. Estás en una oficina de archivo segura. Al fondo, ves un conducto de ventilación con la rejilla rota por donde entra aire fresco.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "El lector emite un pitido verde y la pesada puerta se desliza abriéndose. Te metes rápidamente y la puerta se cierra a tus espaldas. Estás en una oficina de archivo segura. Al fondo, ves un conducto de ventilación con la rejilla rota por donde entra aire fresco.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl mobiliario oxidado y las manchas indescifrables en las paredes atestiguan el sufrimiento silencioso de quienes alguna vez estuvieron encerrados aquí, dejando ecos de su agonía flotando en el ambiente.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_sala_segura.jpg",
       "visual_effect": "none",
       "options": [
         {
@@ -177,24 +187,27 @@
       ]
     },
     "c1_ducto_ventilacion": {
-      "text": "Te arrastras por el estrecho y polvoriento conducto metálico. Escuchas al monstruo golpear la puerta de la oficina abajo, pero el metal del conducto te protege. Avanzas hacia adelante hasta que el conducto cede y caes en el sótano del sanatorio.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Te arrastras por el estrecho y polvoriento conducto metálico. Escuchas al monstruo golpear la puerta de la oficina abajo, pero el metal del conducto te protege. Avanzas hacia adelante hasta que el conducto cede y caes en el sótano del sanatorio.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl mobiliario oxidado y las manchas indescifrables en las paredes atestiguan el sufrimiento silencioso de quienes alguna vez estuvieron encerrados aquí, dejando ecos de su agonía flotando en el ambiente.\n\nEl eco del sonido reverbera en el vacío del corredor, despertando temores ancestrales en lo más profundo de tu conciencia. Algo te acecha desde la penumbra, y la distancia que los separa parece acortarse con cada latido.\n\nLa presencia del ser maldito satura el ambiente con un hedor a muerte y descomposición, paralizando tus músculos por un instante y forzándote a tomar decisiones al límite de la cordura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_sala_segura.jpg",
       "visual_effect": "shake",
       "checkpoint": true,
       "unlock_trophy_id": "t_infiltrado",
       "options": []
     },
     "c1_escape_emergencia": {
-      "text": "Corres con todas tus fuerzas. Los pasos de la criatura azotan el suelo justo detrás de ti. Empujas la barra de la puerta de hierro con desesperación; la puerta cede y sales trastabillando a las escaleras que bajan al sótano.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Corres con todas tus fuerzas. Los pasos de la criatura azotan el suelo justo detrás de ti. Empujas la barra de la puerta de hierro con desesperación; la puerta cede y sales trastabillando a las escaleras que bajan al sótano.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nTu corazón late con fuerza descontrolada contra tus costillas, y el sudor frío te nubla la vista mientras la adrenalina te impulsa a seguir adelante sin mirar atrás, sabiendo que el menor titubeo será tu fin.\n\nEl eco del sonido reverbera en el vacío del corredor, despertando temores ancestrales en lo más profundo de tu conciencia. Algo te acecha desde la penumbra, y la distancia que los separa parece acortarse con cada latido.\n\nLa presencia del ser maldito satura el ambiente con un hedor a muerte y descomposición, paralizando tus músculos por un instante y forzándote a tomar decisiones al límite de la cordura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_pasillo_linterna.jpg",
       "visual_effect": "shake",
       "checkpoint": true,
       "unlock_trophy_id": "t_escapista",
       "options": []
     },
     "c1_armario_escondite": {
-      "text": "Te encierras en el armario de limpieza aguantando la respiración. A través de la rejilla ves pasar una silueta espantosa y huesuda. Una vez que sus pasos se alejan por completo, sales con sigilo y te deslizas por la puerta de emergencia.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Te encierras en el armario de limpieza aguantando la respiración. A través de la rejilla ves pasar una silueta espantosa y huesuda. Una vez que sus pasos se alejan por completo, sales con sigilo y te deslizas por la puerta de emergencia.\n\nEl aire helado transporta un susurro incomprensible que eriza el vello de tu nuca, recordándote que cada segundo cuenta en este laberinto de locura.\n\nEl eco del sonido reverbera en el vacío del corredor, despertando temores ancestrales en lo más profundo de tu conciencia. Algo te acecha desde la penumbra, y la distancia que los separa parece acortarse con cada latido.\n\nLa presencia del ser maldito satura el ambiente con un hedor a muerte y descomposición, paralizando tus músculos por un instante y forzándote a tomar decisiones al límite de la cordura.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch1/c1_armario.jpg",
       "visual_effect": "none",
       "checkpoint": true,
       "unlock_trophy_id": "t_sigilo",

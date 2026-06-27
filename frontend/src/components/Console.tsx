@@ -5,17 +5,28 @@ import { useAudio } from '../hooks/useAudio';
 export interface StoryNodeData {
   text: string;
   ambient_sound?: string;
+  image?: string;
   visual_effect: 'none' | 'flicker' | 'shake' | 'red_flash' | 'fade_to_black';
   is_death_node: boolean;
   checkpoint: boolean;
   options: { text: string; next_node_id: string }[];
+  input_challenge?: {
+    placeholder: string;
+    correct_answer: string;
+    success_node_id: string;
+    fail_node_id: string;
+  } | null;
+  timer?: {
+    duration_seconds: number;
+    timeout_node_id: string;
+  } | null;
 }
 
 interface ConsoleProps {
   currentChapter: number;
   playtimeSeconds: number;
   node: StoryNodeData;
-  onNavigate: (nextNodeId: string) => Promise<void>;
+  onNavigate: (nextNodeId: string, userInput?: string) => Promise<void>;
   onOpenTrophyRoom: () => void;
   onExit: () => void;
   loading: boolean;
@@ -34,11 +45,95 @@ export function Console({
   theme,
   onToggleTheme,
 }: ConsoleProps) {
-  const { playTrack } = useAudio();
+  const { playTrack, toggleMute, isMuted } = useAudio();
   const [displayedText, setDisplayedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [activeEffect, setActiveEffect] = useState<'none' | 'flicker' | 'shake' | 'red_flash' | 'fade_to_black'>('none');
+  const [userInput, setUserInput] = useState('');
   const typingTimerRef = useRef<any>(null);
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
+  const timerIntervalRef = useRef<any>(null);
+  const lastBeepRef = useRef<number>(0);
+  const onNavigateRef = useRef(onNavigate);
+
+  // Keep navigation callback ref updated
+  useEffect(() => {
+    onNavigateRef.current = onNavigate;
+  }, [onNavigate]);
+
+  const playWarningBeep = (freq: number) => {
+    try {
+      const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      
+      gain.gain.setValueAtTime(0.04, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+      
+      osc.start();
+      osc.stop(ctx.currentTime + 0.16);
+    } catch (e) {}
+  };
+
+  // Handle countdown timer logic when typewriter typing completes
+  useEffect(() => {
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+    setTimeLeft(null);
+
+    if (isTypingComplete && node.timer) {
+      const duration = node.timer.duration_seconds;
+      const timeoutNodeId = node.timer.timeout_node_id;
+      setTimeLeft(duration);
+      const start = Date.now();
+      const durationMs = duration * 1000;
+
+      timerIntervalRef.current = setInterval(() => {
+        const elapsed = Date.now() - start;
+        const remaining = Math.max(0, (durationMs - elapsed) / 1000);
+        setTimeLeft(remaining);
+
+        // Synthesis sound beeps when under 5s
+        if (remaining <= 5 && remaining > 0) {
+          const beepInterval = remaining <= 2 ? 400 : 1000;
+          const now = Date.now();
+          if (now - lastBeepRef.current >= beepInterval) {
+            lastBeepRef.current = now;
+            playWarningBeep(remaining <= 2 ? 800 : 600);
+          }
+        }
+
+        if (remaining <= 0) {
+          if (timerIntervalRef.current) {
+            clearInterval(timerIntervalRef.current);
+            timerIntervalRef.current = null;
+          }
+          setTimeLeft(null);
+          onNavigateRef.current(timeoutNodeId);
+        }
+      }, 50);
+    }
+
+    return () => {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current);
+        timerIntervalRef.current = null;
+      }
+    };
+  }, [isTypingComplete, node]);
+
+  // Clear user input when moving to a new node
+  useEffect(() => {
+    setUserInput('');
+  }, [node]);
 
   // Play ambient audio loop whenever the sound path changes
   useEffect(() => {
@@ -67,16 +162,30 @@ export function Console({
       clearInterval(typingTimerRef.current);
     }
 
-    const textToType = node.text;
+    // Also clear timer states on text/node change
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+    setTimeLeft(null);
+
+    const textToType = node.text || '';
+    if (!textToType) {
+      setIsTypingComplete(true);
+      return;
+    }
+
     let index = 0;
-    const speed = 25; // 25ms per character
+    const speed = 15; // 15ms per character
 
     typingTimerRef.current = setInterval(() => {
-      setDisplayedText((prev) => prev + textToType.charAt(index));
       index++;
+      setDisplayedText(textToType.slice(0, index));
 
       if (index >= textToType.length) {
-        clearInterval(typingTimerRef.current);
+        if (typingTimerRef.current) {
+          clearInterval(typingTimerRef.current);
+        }
         setIsTypingComplete(true);
       }
     }, speed);
@@ -147,15 +256,33 @@ export function Console({
 
   const handleOptionClick = async (nextNodeId: string) => {
     if (loading) return;
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+    setTimeLeft(null);
     playSynthSelect();
     await onNavigate(nextNodeId);
   };
 
+  const handleInputSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loading || !userInput.trim()) return;
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+    setTimeLeft(null);
+    playSynthSelect();
+    await onNavigate('submit_input', userInput);
+  };
+
   // Playtime formatting utility (HH:MM:SS)
   const formatPlaytime = (totalSeconds: number) => {
-    const hrs = Math.floor(totalSeconds / 3600);
-    const mins = Math.floor((totalSeconds % 3600) / 60);
-    const secs = totalSeconds % 60;
+    const seconds = Math.max(0, totalSeconds);
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
     
     const pad = (num: number) => String(num).padStart(2, '0');
     
@@ -178,7 +305,7 @@ export function Console({
   return (
     <div style={styles.container} className={activeEffect === 'red_flash' ? 'effect-red_flash' : ''}>
       {/* Top Navbar */}
-      <header style={styles.navbar}>
+      <header className="console-navbar" style={styles.navbar}>
         <div style={styles.navLeft}>
           <button style={styles.iconBtn} onClick={onExit} title="Salir al Menú">
             <Icons.ChevronLeft size={18} />
@@ -193,6 +320,10 @@ export function Console({
         </div>
         
         <div style={styles.navRight}>
+          <button style={styles.themeToggleBtn} onClick={toggleMute} title={isMuted ? "Activar Música" : "Silenciar Música"}>
+            {isMuted ? <Icons.VolumeX size={18} /> : <Icons.Volume2 size={18} />}
+          </button>
+          
           <button style={styles.themeToggleBtn} onClick={onToggleTheme} title="Cambiar Tema">
             {theme === 'dark' ? <Icons.Sun size={18} /> : <Icons.Moon size={18} />}
           </button>
@@ -206,28 +337,77 @@ export function Console({
           
           <button style={styles.trophyBtn} onClick={onOpenTrophyRoom} title="Sala de Trofeos">
             <Icons.Award size={18} color="var(--accent-gold)" />
-            <span style={{ ...styles.btnText, color: 'var(--accent-gold)' }}>Logros</span>
+            <span className="trophy-btn-text" style={{ ...styles.btnText, color: 'var(--accent-gold)' }}>Logros</span>
           </button>
         </div>
       </header>
 
       {/* Narrative Console */}
-      <main style={styles.consoleWrapper}>
-        <div className={getConsoleClassName()} style={styles.consoleCard} onClick={handleSkipTypewriter}>
+      <main className="console-wrapper" style={styles.consoleWrapper}>
+        <div
+          className={`${getConsoleClassName()} console-card`}
+          style={{
+            ...styles.consoleCard,
+            height: '100%',
+            maxHeight: node.image ? '780px' : '640px',
+          }}
+          onClick={handleSkipTypewriter}
+        >
           {/* Decorative console borders */}
           <div style={styles.borderCornerTopLeft}></div>
           <div style={styles.borderCornerTopRight}></div>
           <div style={styles.borderCornerBottomLeft}></div>
           <div style={styles.borderCornerBottomRight}></div>
           
-          <div style={styles.narrativeArea}>
-            <p className={!isTypingComplete ? 'typewriter-cursor' : ''} style={styles.narrativeText}>
+          {node.image && (
+            <div style={{ ...styles.imageContainer, position: 'relative', zIndex: 10 }}>
+              <img
+                src={node.image.startsWith('/') ? node.image : '/' + node.image}
+                alt="Escena narrativa"
+                style={styles.nodeImage}
+              />
+            </div>
+          )}
+          
+          <div style={{ ...styles.narrativeArea, position: 'relative', zIndex: 10 }}>
+            <p 
+              className={!isTypingComplete ? 'typewriter-cursor' : ''} 
+              style={{
+                ...styles.narrativeText,
+                color: node.is_death_node ? '#ffffff' : 'var(--text-primary)',
+                textShadow: node.is_death_node ? '0 0 8px rgba(255, 255, 255, 0.4)' : 'none'
+              }}
+            >
               {displayedText}
             </p>
           </div>
           
           {/* Interaction Area */}
           <div style={styles.optionsArea}>
+            {timeLeft !== null && node.timer && isTypingComplete && !loading && (
+              <div style={styles.timerWrapper}>
+                <div style={styles.timerHeader}>
+                  <Icons.Timer size={14} color={timeLeft <= 3 ? 'var(--accent-red)' : 'var(--accent-teal)'} className="effect-flicker" />
+                  <span style={{
+                    ...styles.timerText,
+                    color: timeLeft <= 3 ? 'var(--accent-red)' : 'var(--accent-teal)',
+                  }}>
+                    TIEMPO LÍMITE: {timeLeft.toFixed(1)}s
+                  </span>
+                </div>
+                <div style={styles.timerBarBg}>
+                  <div 
+                    style={{
+                      ...styles.timerBarFill,
+                      width: `${(timeLeft / node.timer.duration_seconds) * 100}%`,
+                      background: timeLeft <= 3 ? 'var(--accent-red)' : 'var(--accent-teal)',
+                      boxShadow: timeLeft <= 3 ? '0 0 10px var(--accent-red)' : '0 0 10px var(--accent-teal)',
+                    }}
+                  />
+                </div>
+              </div>
+            )}
+
             {loading ? (
               <div style={styles.loaderContainer}>
                 <Icons.Loader className="effect-flicker" size={24} color="var(--accent-teal)" />
@@ -235,7 +415,28 @@ export function Console({
               </div>
             ) : isTypingComplete ? (
               <div style={styles.optionsContainer}>
-                {node.checkpoint ? (
+                {node.input_challenge ? (
+                  // Input challenge Form
+                  <form onSubmit={handleInputSubmit} style={styles.inputForm}>
+                    <input
+                      type="text"
+                      value={userInput}
+                      onChange={(e) => setUserInput(e.target.value)}
+                      placeholder={node.input_challenge.placeholder}
+                      style={styles.challengeInput}
+                      autoFocus
+                    />
+                    <button
+                      type="submit"
+                      className="glow-btn"
+                      style={styles.submitInputBtn}
+                      disabled={!userInput.trim()}
+                    >
+                      <Icons.Key size={16} style={{ marginRight: '8px' }} />
+                      Confirmar Código
+                    </button>
+                  </form>
+                ) : node.checkpoint ? (
                   // Checkpoint button
                   <button
                     className="glow-btn"
@@ -247,14 +448,17 @@ export function Console({
                   </button>
                 ) : node.is_death_node ? (
                   // Death Node retry
-                  <button
-                    className="glow-btn glow-btn-red"
-                    onClick={() => handleOptionClick('c1_inicio')} // Fallback start
-                    style={styles.deathBtn}
-                  >
-                    <Icons.RefreshCw size={16} style={{ marginRight: '8px' }} />
-                    Despertar del Bucle (Reintentar)
-                  </button>
+                  node.options.map((opt, i) => (
+                    <button
+                      key={i}
+                      className="glow-btn glow-btn-red"
+                      onClick={() => handleOptionClick(opt.next_node_id)}
+                      style={styles.deathBtn}
+                    >
+                      <Icons.RefreshCw size={16} style={{ marginRight: '8px' }} />
+                      {opt.text}
+                    </button>
+                  ))
                 ) : (
                   // Standard story options
                   node.options.map((opt, i) => (
@@ -375,12 +579,11 @@ const styles = {
     maxWidth: '900px',
     width: '100%',
     margin: '0 auto',
+    overflow: 'hidden',
   },
   consoleCard: {
     width: '100%',
-    height: '100%',
-    maxHeight: '620px',
-    padding: '40px',
+    padding: '30px 35px',
     display: 'flex',
     flexDirection: 'column' as const,
     position: 'relative' as const,
@@ -428,7 +631,7 @@ const styles = {
   narrativeArea: {
     flex: 1,
     overflowY: 'auto' as const,
-    marginBottom: '30px',
+    marginBottom: '20px',
     paddingRight: '10px',
   },
   narrativeText: {
@@ -441,11 +644,14 @@ const styles = {
   },
   optionsArea: {
     borderTop: '1px solid var(--border-color)',
-    paddingTop: '30px',
+    paddingTop: '20px',
     display: 'flex',
     flexDirection: 'column' as const,
     justifyContent: 'center',
     minHeight: '120px',
+    position: 'relative' as const,
+    zIndex: 10,
+    flexShrink: 0,
   },
   optionsContainer: {
     display: 'flex',
@@ -507,5 +713,82 @@ const styles = {
     fontSize: '0.9rem',
     fontFamily: 'var(--font-mono)',
     color: 'var(--text-secondary)',
+  },
+  imageContainer: {
+    width: '100%',
+    height: '160px',
+    borderRadius: '4px',
+    overflow: 'hidden',
+    border: '1px solid var(--border-color)',
+    marginBottom: '20px',
+    background: '#000',
+    flexShrink: 0,
+  },
+  nodeImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover' as const,
+    opacity: 0.85,
+  },
+  inputForm: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '16px',
+    width: '100%',
+    alignItems: 'center',
+  },
+  challengeInput: {
+    width: '100%',
+    padding: '14px 20px',
+    background: 'rgba(0, 0, 0, 0.4)',
+    border: '1px solid var(--accent-teal)',
+    borderRadius: '6px',
+    fontSize: '1.1rem',
+    color: '#ffffff',
+    textAlign: 'center' as const,
+    outline: 'none',
+    boxShadow: '0 0 10px rgba(0, 243, 255, 0.1)',
+    fontFamily: 'var(--font-mono)',
+    letterSpacing: '2px',
+  },
+  submitInputBtn: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '1rem',
+    padding: '14px 20px',
+  },
+  timerWrapper: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '6px',
+    marginBottom: '16px',
+    animation: 'fade-in 0.2s ease-out',
+  },
+  timerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    justifyContent: 'center',
+  },
+  timerText: {
+    fontFamily: 'var(--font-mono)',
+    fontSize: '0.85rem',
+    fontWeight: 'bold',
+    letterSpacing: '1px',
+  },
+  timerBarBg: {
+    width: '100%',
+    height: '4px',
+    background: 'rgba(255, 255, 255, 0.05)',
+    borderRadius: '2px',
+    overflow: 'hidden',
+  },
+  timerBarFill: {
+    height: '100%',
+    borderRadius: '2px',
+    transition: 'width 0.05s linear',
   },
 };

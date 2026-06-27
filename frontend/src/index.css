@@ -59,7 +59,6 @@
   padding: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--text-muted) var(--bg-primary);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
@@ -70,6 +69,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbars */
@@ -90,9 +90,7 @@ body {
 
 /* Glassmorphism Panel Utility with theme adaptation */
 .glass-panel {
-  background: rgba(13, 17, 26, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(13, 17, 26, 0.96);
   border: 1px solid var(--border-color);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   border-radius: var(--border-radius);
@@ -100,7 +98,7 @@ body {
 }
 
 .light-theme .glass-panel {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(245, 242, 235, 0.98);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -148,16 +146,17 @@ body {
 }
 
 /* Specific Red glow button */
-.glow-btn-red:hover:not(:disabled) {
-  border-color: var(--accent-red);
-  background: rgba(255, 51, 102, 0.05);
-  box-shadow: 0 0 15px var(--accent-red-glow);
-  text-shadow: 0 0 5px var(--accent-red);
+.glow-btn-red {
+  color: #ff3366 !important;
+  border-color: rgba(255, 51, 102, 0.5) !important;
 }
 
-.light-theme .glow-btn-red:hover:not(:disabled) {
-  background: rgba(185, 28, 28, 0.06);
-  text-shadow: none;
+.glow-btn-red:hover:not(:disabled) {
+  color: #ffffff !important;
+  border-color: var(--accent-red) !important;
+  background: rgba(255, 51, 102, 0.15) !important;
+  box-shadow: 0 0 15px var(--accent-red-glow) !important;
+  text-shadow: 0 0 5px var(--accent-red) !important;
 }
 
 /* --- Immersive Animations & Effects --- */
@@ -182,11 +181,9 @@ body {
 @keyframes light-flicker {
   0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
     opacity: 0.99;
-    filter: brightness(1);
   }
   20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
-    opacity: 0.3;
-    filter: brightness(0.4) contrast(1.2);
+    opacity: 0.88;
   }
 }
 
@@ -218,12 +215,24 @@ body {
 
 /* Fade To Black Transition */
 .effect-fade_to_black {
+  position: relative;
+}
+.effect-fade_to_black::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  pointer-events: none;
   animation: fade-black-anim 2.5s forwards;
+  z-index: 5;
 }
 
 @keyframes fade-black-anim {
-  from { filter: brightness(1); }
-  to { filter: brightness(0); background: #000; }
+  from { opacity: 0; }
+  to { opacity: 0.96; }
 }
 
 /* Slide in from right (Trophy toast) */
@@ -258,4 +267,30 @@ body {
 
 @keyframes cursor-blink {
   50% { opacity: 0; }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 768px) {
+  .console-navbar {
+    padding: 10px 15px !important;
+  }
+  .console-navbar button span,
+  .console-navbar .trophy-btn-text {
+    display: none !important; /* Hide labels on mobile to save space */
+  }
+  .console-wrapper {
+    padding: 12px !important;
+    overflow: hidden !important;
+  }
+  .console-card {
+    padding: 20px 16px !important;
+    height: 100% !important; /* Force fit parent wrapper exactly! */
+  }
+  .console-card img {
+    height: 120px !important;
+  }
+  .console-card p {
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+  }
 }

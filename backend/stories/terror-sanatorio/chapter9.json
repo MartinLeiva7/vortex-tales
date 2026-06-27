@@ -7,13 +7,18 @@
   "trophies": [],
   "nodes": {
     "c9_inicio": {
-      "text": "Entras a la administración. Hay archivadores volcados y documentos médicos desparramados en el suelo. Es el lugar donde se almacenan las fichas del personal del hospital.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Entras a la administración. Hay archivadores volcados y documentos médicos desparramados en el suelo. Es el lugar donde se almacenan las fichas del personal del hospital.\n\nEl desorden en la oficina de administración es total, revelando el caos absoluto de las últimas horas antes de la evacuación.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch9/c9_oficina.jpg",
       "visual_effect": "none",
       "options": [
         {
           "text": "Buscar en el escritorio principal del director del hospital",
           "next_node_id": "c9_ficha"
+        },
+        {
+          "text": "Esconderte tras la estantería rota al escuchar pisadas metálicas",
+          "next_node_id": "c9_sigilo"
         },
         {
           "text": "Intentar forzar los ventanales sellados de la oficina para escapar",
@@ -22,8 +27,35 @@
       ]
     },
     "c9_muerte": {
-      "text": "Al intentar romper los ventanales de vidrio templado blindado, las vibraciones y el estruendo activan una ruidosa alarma perimetral silenciosa que atrae a la criatura en segundos.",
-      "ambient_sound": "audio/monster_jumpscare.mp3",
+      "text": "Al intentar romper los ventanales de vidrio templado blindado, las vibraciones y el estruendo activan una ruidosa alarma perimetral silenciosa que atrae a la criatura en segundos.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/monster_jumpscare.mp3",
+      "image": "images/terror-sanatorio/shared/infected_jumpscare.jpg",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar en la oficina (Reintentar)",
+          "next_node_id": "c9_inicio"
+        }
+      ]
+    },
+    "c9_sigilo": {
+      "text": "Te encoges detrás de una estantería de metal volcada. La puerta se abre lentamente y un infectado merodea la habitación. Para no llamar su atención, debes controlar tu pulso respondiendo mentalmente al acertijo del susurro: 'Tengo ciudades pero no casas, montañas pero no árboles, ríos pero no agua. ¿Qué soy?'",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch9/c9_oficina.jpg",
+      "visual_effect": "flicker",
+      "options": [],
+      "input_challenge": {
+        "placeholder": "Escribe la respuesta del acertijo...",
+        "correct_answer": "mapa",
+        "success_node_id": "c9_ficha",
+        "fail_node_id": "c9_muerte_panico"
+      }
+    },
+    "c9_muerte_panico": {
+      "text": "El pánico te domina y tu respiración entrecortada delata tu posición. El infectado gira la cabeza de golpe y salta sobre ti con garras afiladas.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/monster_jumpscare.mp3",
+      "image": "images/terror-sanatorio/shared/infected_jumpscare.jpg",
       "visual_effect": "red_flash",
       "is_death_node": true,
       "options": [
@@ -34,8 +66,9 @@
       ]
     },
     "c9_ficha": {
-      "text": "Encuentras una libreta negra de cuero. La última anotación dice: 'El portón principal de hierro responde al código de seguridad de evacuación militar: 4091'. Memorizas el código y sales sigilosamente hacia el quirófano clínico.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Tras unos instantes de silencio absoluto, el peligro pasa y encuentras una libreta negra de cuero en el escritorio. La última anotación dice: 'El portón principal de hierro responde al código de seguridad de evacuación militar: 4091'. Memorizas el código y sales sigilosamente hacia el quirófano clínico.\n\nGuardas la libreta con manos temblorosas; el código '4091' es tu única llave de salvación en esta pesadilla de hierro.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch9/c9_libreta.jpg",
       "visual_effect": "none",
       "checkpoint": true,
       "options": []

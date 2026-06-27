@@ -7,9 +7,14 @@
   "trophies": [],
   "nodes": {
     "c5_inicio": {
-      "text": "La morgue está sumida en un frío gélido. Filas de cajones metálicos se extienden en las paredes. Uno de los cajones de metal en el centro de la sala se encuentra entreabierto.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
-      "visual_effect": "none",
+      "text": "La morgue está sumida en un frío gélido. Filas de cajones metálicos se extienden en las paredes. Uno de los cajones de metal en el centro de la sala se encuentra entreabierto, y un chirrido metálico espantoso resuena cuando comienza a deslizarse solo hacia afuera lentamente...\n\nEl frío en la morgue es denso y penetrante, cargado con el olor a formol y metal helado que eriza tu piel.\n\nLas mesas de autopsia de acero inoxidable y los drenajes obstruidos narran en silencio historias de un pasado oscuro y doloroso.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch5/c5_morgue_fria.jpg",
+      "visual_effect": "shake",
+      "timer": {
+        "duration_seconds": 10,
+        "timeout_node_id": "c5_muerte_tiempo"
+      },
       "options": [
         {
           "text": "Inspeccionar el cajón abierto de la morgue",
@@ -22,8 +27,9 @@
       ]
     },
     "c5_muerte": {
-      "text": "Al intentar pasar de largo, el cajón de la morgue se abre violentamente de golpe. Un brazo helado y purulento se estira y te arrastra con fuerza sobrehumana hacia la negrura interior del cajón, sellándote vivo.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Al intentar pasar de largo, el cajón de la morgue se abre violentamente de golpe. Un brazo helado y purulento se estira y te arrastra con fuerza sobrehumana hacia la negrura interior del cajón, sellándote vivo.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "options": [
@@ -33,9 +39,23 @@
         }
       ]
     },
+    "c5_muerte_tiempo": {
+      "text": "Te quedas paralizado por el horror mientras el cajón se abre del todo. Una criatura pálida emerge con movimientos espasmódicos, arrojándose sobre ti y ahogando tus gritos en la helada penumbra.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/monster_jumpscare.mp3",
+      "image": "images/terror-sanatorio/shared/infected_jumpscare.jpg",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar en la morgue (Reintentar)",
+          "next_node_id": "c5_inicio"
+        }
+      ]
+    },
     "c5_objeto": {
-      "text": "Dentro del cajón encuentras un bisturí quirúrgico afilado de plata y una llave del patio exterior colgada de una cadena. Te apresuras hacia la puerta trasera del patio central.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Dentro del cajón encuentras un bisturí quirúrgico afilado de plata y una llave del patio exterior colgada de una cadena. Te apresuras hacia la puerta trasera del patio central.\n\nTomas los objetos con rapidez, sintiendo la gélida plata del bisturí como una pequeña y precaria defensa contra la oscuridad.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch5/c5_llave.jpg",
       "visual_effect": "none",
       "checkpoint": true,
       "options": []

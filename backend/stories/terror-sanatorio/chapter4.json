@@ -7,8 +7,9 @@
   "trophies": [],
   "nodes": {
     "c4_inicio": {
-      "text": "El ala de laboratorios es estéril, fría y está llena de frascos de reactivos químicos destrozados. Las terminales apagadas reflejan tu rostro asustado. Una de las pantallas de control muestra una advertencia de fuga de presión.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "El ala de laboratorios es estéril, fría y está llena de frascos de reactivos químicos destrozados. Las terminales apagadas reflejan tu rostro asustado. Una de las pantallas de control muestra una advertencia de fuga de presión.\n\nEl silencio en los laboratorios es casi absoluto, roto únicamente por el siseo intermitente de alguna válvula lejana.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch4/c4_laboratorio.jpg",
       "visual_effect": "flicker",
       "options": [
         {
@@ -18,8 +19,9 @@
       ]
     },
     "c4_consola": {
-      "text": "La consola de control de gas nitrógeno tiene una palanca de emergencia de color amarillo. Detrás de ti, escuchas a una criatura arañando furiosamente las tuberías del techo, buscando una entrada.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "La consola de control de gas nitrógeno tiene una palanca de emergencia de color amarillo. Detrás de ti, escuchas a una criatura arañando furiosamente las tuberías del techo, buscando una entrada.\n\nLa tensión en el ambiente es casi palpable mientras tus dedos buscan la palanca de emergencia de color amarillo brillante.\n\nDesde los conductos de ventilación sobre tu cabeza provienen ruidos de metal arañado que revelan que el cazador busca su presa.\n\nEl penetrante olor a ozono y reactivos químicos se mezcla con un hedor rancio y bestial que te congela la sangre.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch4/c4_consola.jpg",
       "visual_effect": "none",
       "options": [
         {
@@ -33,8 +35,9 @@
       ]
     },
     "c4_muerte": {
-      "text": "Al tirar de los cables expuestos, una descarga eléctrica de alto voltaje recorre tu cuerpo, deteniendo tu corazón en el acto. Caes al suelo cubierto de chispas.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Al tirar de los cables expuestos, una descarga eléctrica de alto voltaje recorre tu cuerpo, deteniendo tu corazón en el acto. Caes al suelo cubierto de chispas.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "red_flash",
       "is_death_node": true,
       "options": [
@@ -45,8 +48,9 @@
       ]
     },
     "c4_escape": {
-      "text": "Un silbido ensordecedor llena la sala cuando el gas nitrógeno se purga por las tuberías, ahuyentando a la criatura del techo. Te deslizas rápidamente por la compuerta que da a la morgue.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Un silbido ensordecedor llena la sala cuando el gas nitrógeno se purga por las tuberías, ahuyentando a la criatura del techo. Te deslizas rápidamente por la compuerta que da a la morgue.\n\nTus pulmones exigen aire mientras te escurres hacia la compuerta, con el corazón latiendo desbocado en tu pecho.\n\nLas baldosas y paredes muestran marcas de quemaduras químicas y raspones profundos, mudos testigos de experimentos desesperados.\n\nLa adrenalina fluye a torrentes por tu cuerpo, empujándote a través del umbral antes de que el gas inunde por completo la sala.\n\nEl rugido enfurecido de la criatura atrapada en el laboratorio resuena a tus espaldas, amortiguado por el cierre hermético de la puerta.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch4/c4_escape.jpg",
       "visual_effect": "shake",
       "checkpoint": true,
       "options": []

@@ -7,8 +7,9 @@
   "trophies": [],
   "nodes": {
     "c11_inicio": {
-      "text": "Subes por una estrecha escalera de caracol de hierro que tiembla a cada paso. El viento nocturno ruge con fuerza en el cuarto superior de la torre de guardia, donde se halla la maquinaria de las rejas.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Subes por una estrecha escalera de caracol de hierro que tiembla a cada paso. El viento nocturno ruge con fuerza en el cuarto superior de la torre de guardia, donde se halla la maquinaria de las rejas.\n\nEl viento nocturno aúlla con violencia a través de los ventanales de la torre, haciendo vibrar la estructura metálica.\n\nEl panel de control oxidado y los engranajes cubiertos de grasa reseca muestran años de total abandono y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch11/c11_torre.jpg",
       "visual_effect": "shake",
       "options": [
         {
@@ -22,8 +23,9 @@
       ]
     },
     "c11_muerte": {
-      "text": "Te adentras en el cuarto de máquinas buscando refugio. Los engranajes oxidados de toneladas de hierro se activan de repente, atrapando tus prendas y aplastándote despiadadamente.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Te adentras en el cuarto de máquinas buscando refugio. Los engranajes oxidados de toneladas de hierro se activan de repente, atrapando tus prendas y aplastándote despiadadamente.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "options": [
@@ -34,8 +36,9 @@
       ]
     },
     "c11_palanca": {
-      "text": "Tiras con fuerza de la pesada palanca metálica. Un estruendo sordo sacude la torre y abajo en la oscuridad del patio, escuchas el chirrido del portón principal de hierro abriéndose lentamente.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Tiras con fuerza de la pesada palanca metálica. Un estruendo sordo sacude la torre y abajo en la oscuridad del patio, escuchas el chirrido del portón principal de hierro abriéndose lentamente.\n\nTiras del metal oxidado con toda tu alma, con la certeza de que este mecanismo es tu boleto de salida a la libertad.\n\nEl chirrido metálico de las compuertas inferiores rompe la noche exterior, anunciando al sanatorio que la salida está abierta.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch11/c11_palanca.jpg",
       "visual_effect": "shake",
       "checkpoint": true,
       "options": []

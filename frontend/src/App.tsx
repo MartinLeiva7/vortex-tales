@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Auth } from './components/Auth';
 import { Dashboard } from './components/Dashboard';
 import { Console } from './components/Console';
@@ -7,6 +7,8 @@ import { TrophyRoom } from './components/TrophyRoom';
 import type { Trophy } from './components/TrophyRoom';
 import { Notification } from './components/Notification';
 import { usePlaytime } from './hooks/usePlaytime';
+import { Leaderboard } from './components/Leaderboard';
+import { AlertModal } from './components/AlertModal';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
@@ -30,6 +32,8 @@ export default function App() {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [trophies, setTrophies] = useState<Trophy[]>([]);
   const [isTrophyRoomOpen, setIsTrophyRoomOpen] = useState(false);
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
+  const [leaderboardStoryId, setLeaderboardStoryId] = useState<string | null>(null);
   const [unlockedTrophy, setUnlockedTrophy] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
@@ -37,16 +41,54 @@ export default function App() {
     return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
   });
 
-  // Toggle class on root HTML element
+  const [alertConfig, setAlertConfig] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    type: 'info' | 'success' | 'error' | 'confirm';
+    onClose?: () => void;
+    onConfirm?: () => void;
+  }>({
+    isOpen: false,
+    title: '',
+    message: '',
+    type: 'info',
+  });
+
+  const showAlert = (
+    message: string,
+    type: 'info' | 'success' | 'error' | 'confirm' = 'info',
+    title?: string,
+    onClose?: () => void,
+    onConfirm?: () => void
+  ) => {
+    const defaultTitle = type === 'error' ? 'Error del Sistema' : type === 'success' ? 'Éxito' : type === 'confirm' ? 'Confirmar Acción' : 'Aviso';
+    setAlertConfig({
+      isOpen: true,
+      title: title || defaultTitle,
+      message,
+      type,
+      onClose,
+      onConfirm,
+    });
+  };
+  const [dashboardStats, setDashboardStats] = useState<{
+    currentChapter: number;
+    playtimeSeconds: number;
+    unlockedTrophiesCount: number;
+    totalTrophiesCount: number;
+  } | null>(null);
+
+  // Toggle class on root HTML element (forced dark for non-authenticated screens)
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'light') {
+    if (user && theme === 'light') {
       root.classList.add('light-theme');
     } else {
       root.classList.remove('light-theme');
     }
     localStorage.setItem('theme', theme);
-  }, [theme]);
+  }, [theme, user]);
 
   // Sync playtime ticking locally and push increments to backend
   const tickingPlaytime = usePlaytime(
@@ -86,6 +128,40 @@ export default function App() {
 
     validateSession();
   }, [token]);
+
+  const loadDashboardStats = async () => {
+    if (!token) return;
+    try {
+      const stateRes = await fetch(`${API_BASE}/api/game/state?storyId=terror-sanatorio`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!stateRes.ok) return;
+      const stateData = await stateRes.json();
+
+      const trophiesRes = await fetch(`${API_BASE}/api/game/trophies?storyId=terror-sanatorio`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!trophiesRes.ok) return;
+      const trophiesData = await trophiesRes.json();
+      const trophiesList: Trophy[] = trophiesData.trophies || [];
+      const unlockedCount = trophiesList.filter(t => t.unlocked).length;
+
+      setDashboardStats({
+        currentChapter: stateData.currentChapter,
+        playtimeSeconds: stateData.playtimeSeconds,
+        unlockedTrophiesCount: unlockedCount,
+        totalTrophiesCount: trophiesList.length,
+      });
+    } catch (err) {
+      console.error('Error loading dashboard stats:', err);
+    }
+  };
+
+  useEffect(() => {
+    if (user && !activeStoryId) {
+      loadDashboardStats();
+    }
+  }, [user, activeStoryId, token]);
 
   const handleAuthSuccess = (newToken: string, authenticatedUser: User) => {
     localStorage.setItem('token', newToken);
@@ -130,6 +206,42 @@ export default function App() {
     }
   };
 
+  const handleRestartStory = async (storyId: string) => {
+    if (!token) return;
+
+    showAlert(
+      "¿Seguro que deseas reiniciar tu progreso en esta historia? Perderás tu punto de control actual y tu tiempo de juego, pero conservarás tus logros.",
+      "confirm",
+      "Reiniciar Progreso",
+      undefined,
+      async () => {
+        setLoading(true);
+        try {
+          const response = await fetch(`${API_BASE}/api/game/restart`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ storyId }),
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to restart game.');
+          }
+
+          // After resetting, load the state (which will start from Chapter 1)
+          await handleSelectStory(storyId);
+        } catch (err) {
+          console.error(err);
+          showAlert('Error al reiniciar el juego.', 'error', 'Error del Sistema');
+        } finally {
+          setLoading(false);
+        }
+      }
+    );
+  };
+
   const fetchTrophies = async (storyId: string) => {
     try {
       const response = await fetch(`${API_BASE}/api/game/trophies?storyId=${storyId}`, {
@@ -147,7 +259,7 @@ export default function App() {
     }
   };
 
-  const handleNavigate = async (nextNodeId: string) => {
+  const handleNavigate = async (nextNodeId: string, userInput?: string) => {
     if (!activeStoryId || !token) return;
 
     setLoading(true);
@@ -162,6 +274,7 @@ export default function App() {
         body: JSON.stringify({
           storyId: activeStoryId,
           nextNodeId,
+          userInput,
         }),
       });
 
@@ -172,10 +285,10 @@ export default function App() {
       const data = await response.json();
 
       if (data.storyEnded) {
-        alert(data.message);
-        // Reset state and return to dashboard
-        setGameState(null);
-        setActiveStoryId(null);
+        showAlert(data.message, 'success', 'Historia Completada', () => {
+          setGameState(null);
+          setActiveStoryId(null);
+        });
         return;
       }
 
@@ -204,6 +317,10 @@ export default function App() {
     }
   };
 
+  const handleClearTrophy = useCallback(() => {
+    setUnlockedTrophy(null);
+  }, []);
+
   const handleOpenTrophyRoom = async () => {
     if (activeStoryId) {
       await fetchTrophies(activeStoryId);
@@ -230,9 +347,15 @@ export default function App() {
         <Dashboard
           user={user}
           onSelectStory={handleSelectStory}
+          onRestartStory={handleRestartStory}
           onLogout={handleLogout}
           theme={theme}
           onToggleTheme={() => setTheme(prev => prev === 'dark' ? 'light' : 'dark')}
+          stats={dashboardStats}
+          onOpenLeaderboard={(storyId) => {
+            setLeaderboardStoryId(storyId);
+            setIsLeaderboardOpen(true);
+          }}
         />
       ) : (
         <Console
@@ -258,10 +381,31 @@ export default function App() {
         trophies={trophies}
       />
 
+      {/* Leaderboard Overlay drawer */}
+      <Leaderboard
+        isOpen={isLeaderboardOpen}
+        onClose={() => setIsLeaderboardOpen(false)}
+        storyId={leaderboardStoryId || ''}
+        token={token}
+      />
+
       {/* Achievement Unlocked Toast Notification */}
       <Notification
         trophy={unlockedTrophy}
-        onClear={() => setUnlockedTrophy(null)}
+        onClear={handleClearTrophy}
+      />
+
+      {/* Custom Alert Modal */}
+      <AlertModal
+        isOpen={alertConfig.isOpen}
+        title={alertConfig.title}
+        message={alertConfig.message}
+        type={alertConfig.type}
+        onClose={() => {
+          setAlertConfig((prev) => ({ ...prev, isOpen: false }));
+          if (alertConfig.onClose) alertConfig.onClose();
+        }}
+        onConfirm={alertConfig.onConfirm}
       />
     </>
   );

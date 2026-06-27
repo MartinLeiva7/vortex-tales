@@ -7,8 +7,9 @@
   "trophies": [],
   "nodes": {
     "c3_inicio": {
-      "text": "El ascensor de carga se detiene con un crujido seco. Al escurrirte por las puertas trabadas, entras al vestíbulo principal del sanatorio. El lugar está sumido en el silencio, excepto por el chirrido lejano del viento que se cuela por las ventanas rotas.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "El ascensor de carga se detiene con un crujido seco. Al escurrirte por las puertas trabadas, entras al vestíbulo principal del sanatorio. El lugar está sumido en el silencio, excepto por el chirrido lejano del viento que se cuela por las ventanas rotas.\n\nUna corriente helada y cortante asciende del hueco del ascensor, silbando en tus oídos como un aviso de que el tiempo se agota.\n\nLos quejidos metálicos de la cabina atorada resuenan en las alturas del vestíbulo, acortando la distancia entre tú y el peligro.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch3/c3_lobby.jpg",
       "visual_effect": "flicker",
       "options": [
         {
@@ -18,9 +19,14 @@
       ]
     },
     "c3_recepcion": {
-      "text": "Revisas los cajones del viejo escritorio del mostrador. Encuentras fichas de pacientes destruidas y una llave dorada oxidada con una etiqueta de metal. Un golpe metálico retumba a tu derecha.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Revisas los cajones del viejo escritorio del mostrador. Encuentras fichas de pacientes destruidas y una llave dorada oxidada con una etiqueta de metal. ¡Un golpe metálico retumba a tu derecha y escuchas garras aproximándose velozmente!\n\nLa urgencia te oprime el pecho; sabes que husmear en este escritorio te expone en campo abierto si la criatura decide salir de las sombras.\n\nUn estrépito atronador sacude las vitrinas cercanas, seguido del inconfundible y rítmico rasgar de garras sobre las losetas rotas.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch3/c3_lobby.jpg",
       "visual_effect": "shake",
+      "timer": {
+        "duration_seconds": 8,
+        "timeout_node_id": "c3_muerte_tiempo"
+      },
       "options": [
         {
           "text": "Usar la llave en la reja lateral que lleva al bloque clínico",
@@ -33,8 +39,9 @@
       ]
     },
     "c3_muerte_trampa": {
-      "text": "Caminas rápido por el pasillo de la derecha. Bajo tus pies, las viejas maderas carcomidas ceden y caes al vacío en un conducto de escombros de hierro. Tu viaje termina aquí.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Caminas rápido por el pasillo de la derecha. Bajo tus pies, las viejas maderas carcomidas ceden y caes al vacío en un conducto de escombros de hierro. Tu viaje termina aquí.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "options": [
@@ -44,9 +51,23 @@
         }
       ]
     },
+    "c3_muerte_tiempo": {
+      "text": "Dudas demasiado tiempo. Una criatura con ojos brillantes y movimientos espasmódicos sale de la oscuridad del pasillo lateral y se abalanza sobre ti, desgarrándote antes de que puedas reaccionar.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/monster_jumpscare.mp3",
+      "image": "images/terror-sanatorio/shared/infected_jumpscare.jpg",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar en el ascensor (Reintentar)",
+          "next_node_id": "c3_inicio"
+        }
+      ]
+    },
     "c3_laboratorio_acceso": {
-      "text": "La llave gira con esfuerzo en la cerradura de la reja. Te deslizas al interior y la reja se cierra de golpe a tus espaldas, dejándote a salvo por ahora en el ala de laboratorios.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "La llave gira con esfuerzo en la cerradura de la reja. Te deslizas al interior y la reja se cierra de golpe a tus espaldas, dejándote a salvo por ahora en el ala de laboratorios.\n\nEl sudor frío nubla tu visión mientras empujas la reja de hierro, sabiendo que un segundo de vacilación te costaría la vida.\n\nEl golpe metálico al cerrarse la reja corta el aire como una guillotina, dejando atrás las pisadas y los ruidos de la persecución.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch3/c3_acceso.jpg",
       "visual_effect": "none",
       "checkpoint": true,
       "options": []

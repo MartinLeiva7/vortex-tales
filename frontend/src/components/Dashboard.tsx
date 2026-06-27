@@ -1,14 +1,45 @@
-import { Sun, Moon } from 'lucide-react';
+import { useEffect } from 'react';
+import { Sun, Moon, Trophy, Volume2, VolumeX, RotateCcw } from 'lucide-react';
+import { useAudio } from '../hooks/useAudio';
 
 interface DashboardProps {
   user: { id: string; username: string };
   onSelectStory: (storyId: string) => void;
+  onRestartStory?: (storyId: string) => void;
   onLogout: () => void;
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
+  stats: {
+    currentChapter: number;
+    playtimeSeconds: number;
+    unlockedTrophiesCount: number;
+    totalTrophiesCount: number;
+  } | null;
+  onOpenLeaderboard: (storyId: string) => void;
 }
 
-export function Dashboard({ user, onSelectStory, onLogout, theme, onToggleTheme }: DashboardProps) {
+export function Dashboard({ user, onSelectStory, onRestartStory, onLogout, theme, onToggleTheme, stats, onOpenLeaderboard }: DashboardProps) {
+  const { playTrack, stopAudio, toggleMute, isMuted } = useAudio();
+
+  useEffect(() => {
+    playTrack('audio/shared/menu_ambient.mp3');
+    return () => {
+      stopAudio();
+    };
+  }, []);
+
+  const formatPlaytime = (totalSeconds: number) => {
+    const seconds = Math.max(0, totalSeconds);
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    const pad = (num: number) => String(num).padStart(2, '0');
+    if (hrs > 0) {
+      return `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
+    }
+    return `${pad(mins)}:${pad(secs)}`;
+  };
+
   const stories = [
     {
       id: 'terror-sanatorio',
@@ -18,6 +49,17 @@ export function Dashboard({ user, onSelectStory, onLogout, theme, onToggleTheme 
       duration: '15-20 min',
       difficulty: 'Media',
       accentColor: 'var(--accent-red)',
+      upcoming: false,
+    },
+    {
+      id: 'detectivesco-noir',
+      title: 'Ecos de Baker Street',
+      genre: 'Policial / Misterio Noir',
+      description: 'Una misteriosa niebla cubre Londres. La desaparición de un renombrado historiador en condiciones imposibles despierta la alarma de Scotland Yard. Deberás descifrar pistas crípticas e interrogar a sospechosos astutos en un juego de lógica pura.',
+      duration: 'En desarrollo',
+      difficulty: 'Alta',
+      accentColor: 'var(--accent-teal)',
+      upcoming: true,
     },
   ];
 
@@ -28,6 +70,9 @@ export function Dashboard({ user, onSelectStory, onLogout, theme, onToggleTheme 
           <h2 className="cinzel-title" style={styles.logo}>VORTEX TALES</h2>
         </div>
         <div style={styles.userInfo}>
+          <button onClick={toggleMute} style={styles.themeToggleBtn} title={isMuted ? "Activar Música" : "Silenciar Música"}>
+            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+          </button>
           <button onClick={onToggleTheme} style={styles.themeToggleBtn} title="Cambiar Tema">
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -64,29 +109,93 @@ export function Dashboard({ user, onSelectStory, onLogout, theme, onToggleTheme 
                 </div>
               </div>
 
-              <button
-                onClick={() => onSelectStory(story.id)}
-                className="glow-btn"
-                style={{
-                  ...styles.playBtn,
-                  border: `1px solid ${story.accentColor}aa`,
-                  boxShadow: `0 0 10px ${story.accentColor}22`,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = story.accentColor;
-                  if (theme === 'dark') {
-                    e.currentTarget.style.boxShadow = `0 0 20px ${story.accentColor}55`;
-                    e.currentTarget.style.textShadow = `0 0 5px ${story.accentColor}`;
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = `${story.accentColor}aa`;
-                  e.currentTarget.style.boxShadow = `0 0 10px ${story.accentColor}22`;
-                  e.currentTarget.style.textShadow = 'none';
-                }}
-              >
-                Ingresar al Vórtice
-              </button>
+              {stats && !story.upcoming && (
+                <div style={styles.statsContainer}>
+                  <div style={styles.statsItem}>
+                    <span style={styles.statsLabel}>Capítulo:</span>
+                    <span style={styles.statsVal}>{stats.currentChapter} / 12</span>
+                  </div>
+                  <div style={styles.statsItem}>
+                    <span style={styles.statsLabel}>Tiempo Jugado:</span>
+                    <span style={styles.statsVal}>{formatPlaytime(stats.playtimeSeconds)}</span>
+                  </div>
+                  <div style={styles.statsItem}>
+                    <span style={styles.statsLabel}>Logros:</span>
+                    <span style={styles.statsVal}>🏆 {stats.unlockedTrophiesCount} / {stats.totalTrophiesCount}</span>
+                  </div>
+                </div>
+              )}
+
+              <div style={styles.actionContainer}>
+                <button
+                  onClick={() => !story.upcoming && onSelectStory(story.id)}
+                  disabled={story.upcoming}
+                  className={story.upcoming ? "glow-btn disabled" : "glow-btn"}
+                  style={{
+                    ...styles.playBtn,
+                    border: `1px solid ${story.upcoming ? 'var(--border-color)' : story.accentColor + 'aa'}`,
+                    boxShadow: story.upcoming ? 'none' : `0 0 10px ${story.accentColor}22`,
+                    cursor: story.upcoming ? 'not-allowed' : 'pointer',
+                    opacity: story.upcoming ? 0.6 : 1,
+                  }}
+                  onMouseEnter={(e) => {
+                    if (story.upcoming) return;
+                    e.currentTarget.style.borderColor = story.accentColor;
+                    if (theme === 'dark') {
+                      e.currentTarget.style.boxShadow = `0 0 20px ${story.accentColor}55`;
+                      e.currentTarget.style.textShadow = `0 0 5px ${story.accentColor}`;
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (story.upcoming) return;
+                    e.currentTarget.style.borderColor = `${story.accentColor}aa`;
+                    e.currentTarget.style.boxShadow = `0 0 10px ${story.accentColor}22`;
+                    e.currentTarget.style.textShadow = 'none';
+                  }}
+                >
+                  {story.upcoming
+                    ? 'Próximamente'
+                    : stats && (stats.currentChapter > 1 || stats.playtimeSeconds > 0)
+                      ? `Continuar (Capítulo ${stats.currentChapter})`
+                      : 'Ingresar al Vórtice'}
+                </button>
+
+                {!story.upcoming && stats && (stats.currentChapter > 1 || stats.playtimeSeconds > 0) && onRestartStory && (
+                  <button
+                    onClick={() => onRestartStory(story.id)}
+                    className="glow-btn"
+                    style={styles.restartBtn}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'rgb(239, 68, 68)';
+                      e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
+                      e.currentTarget.style.color = '#fff';
+                      if (theme === 'dark') {
+                        e.currentTarget.style.boxShadow = '0 0 15px rgba(239, 68, 68, 0.3)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+                      e.currentTarget.style.background = 'rgba(239, 68, 68, 0.05)';
+                      e.currentTarget.style.color = 'rgb(248, 113, 113)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
+                  >
+                    <RotateCcw size={14} style={{ marginRight: '8px' }} />
+                    Reiniciar Historia
+                  </button>
+                )}
+
+                {!story.upcoming && (
+                  <button
+                    onClick={() => onOpenLeaderboard(story.id)}
+                    className="glow-btn"
+                    style={styles.leaderboardBtn}
+                  >
+                    <Trophy size={14} style={{ marginRight: '8px' }} />
+                    Ver Rankings
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>
@@ -226,5 +335,64 @@ const styles = {
     background: 'rgba(0, 0, 0, 0.4)',
     color: 'var(--text-primary)',
     fontSize: '1rem',
+  },
+  statsContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    padding: '15px 0',
+    borderTop: '1px solid var(--border-color)',
+    marginBottom: '20px',
+  },
+  statsItem: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '4px',
+  },
+  statsLabel: {
+    fontSize: '0.7rem',
+    fontFamily: 'var(--font-mono)',
+    color: 'var(--text-muted)',
+    textTransform: 'uppercase' as const,
+  },
+  statsVal: {
+    fontSize: '0.9rem',
+    fontWeight: 'bold',
+    color: 'var(--accent-teal)',
+  },
+  actionContainer: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '12px',
+    marginTop: 'auto',
+    width: '100%',
+  },
+  leaderboardBtn: {
+    width: '100%',
+    padding: '12px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '0.85rem',
+    cursor: 'pointer',
+    border: '1px solid var(--border-color)',
+    background: 'rgba(255, 255, 255, 0.02)',
+    fontFamily: 'var(--font-mono)',
+    color: 'var(--text-primary)',
+    transition: 'var(--transition-smooth)',
+  },
+  restartBtn: {
+    width: '100%',
+    padding: '12px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '0.85rem',
+    cursor: 'pointer',
+    border: '1px solid rgba(239, 68, 68, 0.4)',
+    background: 'rgba(239, 68, 68, 0.05)',
+    fontFamily: 'var(--font-mono)',
+    color: 'rgb(248, 113, 113)',
+    transition: 'var(--transition-smooth)',
   },
 };

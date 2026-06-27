@@ -15,7 +15,7 @@ export function Notification({ trophy, onClear }: NotificationProps) {
   useEffect(() => {
     if (!trophy) return;
 
-    // Auto-clear notification after 4 seconds
+    // Auto-clear notification after 4.5 seconds
     const timer = setTimeout(() => {
       onClear();
     }, 4500);
@@ -33,6 +33,15 @@ export function Notification({ trophy, onClear }: NotificationProps) {
         <div style={styles.header}>
           <Icons.Award size={16} color="var(--accent-gold)" />
           <span style={styles.headerText}>¡LOGRO DESBLOQUEADO!</span>
+          <button 
+            onClick={onClear} 
+            style={styles.closeBtn} 
+            title="Cerrar"
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
+          >
+            <Icons.X size={14} />
+          </button>
         </div>
         <div style={styles.body}>
           <div style={styles.iconWrapper}>
@@ -65,12 +74,13 @@ const styles = {
     display: 'flex',
     flexDirection: 'column' as const,
     gap: '10px',
-    background: 'rgba(15, 12, 5, 0.9)',
+    background: 'rgba(15, 12, 5, 0.95)',
   },
   header: {
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
+    width: '100%',
   },
   headerText: {
     fontSize: '0.75rem',
@@ -78,6 +88,19 @@ const styles = {
     color: 'var(--accent-gold)',
     letterSpacing: '1px',
     fontWeight: 'bold',
+  },
+  closeBtn: {
+    background: 'none',
+    border: 'none',
+    color: 'var(--accent-gold)',
+    opacity: 0.6,
+    cursor: 'pointer',
+    marginLeft: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+    padding: '2px',
+    transition: 'opacity 0.2s',
+    outline: 'none',
   },
   body: {
     display: 'flex',

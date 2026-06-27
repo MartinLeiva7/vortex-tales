@@ -7,9 +7,14 @@
   "trophies": [],
   "nodes": {
     "c10_inicio": {
-      "text": "El quirófano central está iluminado por una lámpara cialítica suspendida que zumba fuertemente. Junto a la mesa metálica central, distingues una figura alta y borrosa que te da la espalda.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "El quirófano central está iluminado por una lámpara cialítica suspendida que zumba fuertemente. Junto a la mesa metálica central, distingues una figura alta y borrosa que te da la espalda...\n\nEl zumbido constante de la lámpara cialítica sobre la mesa metálica es el único sonido en este antro de dolor.\n\nLa luz mortecina y oscilante dibuja sombras macabras que parecen cobrar vida y moverse en los rincones del quirófano.\n\nUn hedor insoportable a azufre y descomposición delata que la silueta que te da la espalda no pertenece a este mundo.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch10/c10_quirofano.jpg",
       "visual_effect": "flicker",
+      "timer": {
+        "duration_seconds": 12,
+        "timeout_node_id": "c10_muerte_tiempo"
+      },
       "options": [
         {
           "text": "Deslizarte agachado detrás de los archivadores de metal con instrumental",
@@ -22,8 +27,9 @@
       ]
     },
     "c10_muerte": {
-      "text": "Al intentar abalanzarte, la figura espectral gira su cabeza 180 grados al instante. Su mirada paraliza tus músculos por completo. Te recuesta sobre la mesa quirúrgica y la luz se apaga.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Al intentar abalanzarte, la figura espectral gira su cabeza 180 grados al instante. Su mirada paraliza tus músculos por completo. Te recuesta sobre la mesa quirúrgica y la luz se apaga.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "fade_to_black",
       "is_death_node": true,
       "options": [
@@ -33,9 +39,23 @@
         }
       ]
     },
+    "c10_muerte_tiempo": {
+      "text": "Dudas demasiado en el umbral de la puerta. El zumbido de la lámpara cialítica se detiene de golpe. La figura alta se da la vuelta lentamente revelando una boca deforme y vacía, abalanzándose sobre ti a velocidad sobrehumana.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/monster_jumpscare.mp3",
+      "image": "images/terror-sanatorio/shared/infected_jumpscare.jpg",
+      "visual_effect": "red_flash",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar en el quirófano (Reintentar)",
+          "next_node_id": "c10_inicio"
+        }
+      ]
+    },
     "c10_sigilo": {
-      "text": "Contienes el aliento y te arrastras con sigilo milimétrico tras las vitrinas de vidrio. Logras evadir al espectro y localizas una compuerta metálica que da a la escalera de la torre de observación.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Contienes el aliento y te arrastras con sigilo milimétrico tras las vitrinas de vidrio. Logras evadir al espectro y localizas una compuerta metálica que da a la escalera de la torre de observación.\n\nAvanzas milímetro a milímetro, conteniendo el aliento para evitar que el menor crujido de tus pasos delate tu posición.\n\nEl espectro se mueve lentamente al otro lado de la vitrina, su silueta temblorosa llenando el ambiente de una tensión helada.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch10/c10_sigilo.jpg",
       "visual_effect": "none",
       "checkpoint": true,
       "options": []

@@ -7,8 +7,9 @@
   "trophies": [],
   "nodes": {
     "c6_inicio": {
-      "text": "Sales al aire libre. La niebla en el patio del sanatorio es tan densa que apenas puedes ver tus propios pasos. En el centro exacto se yergue una estatua desgastada de un ángel llorón.",
-      "ambient_sound": "audio/ambience_tension_low.mp3",
+      "text": "Sales al aire libre. La niebla en el patio del sanatorio es tan densa que apenas puedes ver tus propios pasos. En el centro exacto se yergue una estatua desgastada de un ángel llorón.\n\nLa bruma nocturna te envuelve como un sudario húmedo, limitando tu visión a apenas un par de metros a la redonda.\n\nUna ráfaga de viento agita las copas de los árboles secos, trayendo consigo el crujido de ramas rotas que acelera tus latidos.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_tension_low.mp3",
+      "image": "images/terror-sanatorio/ch6/c6_estatua_niebla.jpg",
       "visual_effect": "flicker",
       "options": [
         {
@@ -22,8 +23,9 @@
       ]
     },
     "c6_muerte": {
-      "text": "Te desorientas en la densa niebla nocturna. De la penumbra surge repentinamente una figura alta y famélica que te atrapa por la espalda antes de que puedas emitir un sonido.",
-      "ambient_sound": "audio/game_over.mp3",
+      "text": "Te desorientas en la densa niebla nocturna. De la penumbra surge repentinamente una figura alta y famélica que te atrapa por la espalda antes de que puedas emitir un sonido.\n\nLa oscuridad absoluta reclama tu alma. Los susurros del Vórtice cesan en un silencio eterno que apaga tu último aliento en este abismo de desesperación y olvido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
       "visual_effect": "red_flash",
       "is_death_node": true,
       "options": [
@@ -34,8 +36,9 @@
       ]
     },
     "c6_estatua": {
-      "text": "Al tocar las manos unidas del ángel de mármol, escuchas un clic metálico. La base de la estatua se desplaza lateralmente hacia el suelo, revelando unos escalones de piedra que conducen a la antigua capilla del sanatorio.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Al tocar las manos unidas del ángel de mármol, escuchas un clic metálico. La base de la estatua se desplaza lateralmente hacia el suelo, revelando unos escalones de piedra que conducen a la antigua capilla del sanatorio.\n\nLa piedra de la estatua está helada como el hielo, y un escalofrío te recorre la espalda al sentir el clic bajo tus dedos.\n\nEl áspero rozar del mármol contra el suelo de piedra rompe el silencio del patio exterior, abriendo un acceso oscuro hacia lo desconocido.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch6/c6_secreto.jpg",
       "visual_effect": "shake",
       "checkpoint": true,
       "options": []

@@ -26,10 +26,28 @@ app.get('/health', (req, res) => {
 app.use('/api', apiRouter);
 
 // Start server
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`=========================================`);
   console.log(`  Vortex Tales API Server Running!      `);
   console.log(`  Port: ${PORT}                          `);
   console.log(`  Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`=========================================`);
 });
+
+// Handle graceful shutdown to release the port immediately
+const handleShutdown = () => {
+  console.log('Shutting down API server...');
+  server.close(() => {
+    console.log('Express server closed.');
+    process.exit(0);
+  });
+  
+  // Force exit if connections are kept open for too long
+  setTimeout(() => {
+    console.error('Forced shutdown: connections did not close in time.');
+    process.exit(1);
+  }, 1000);
+};
+
+process.on('SIGINT', handleShutdown);
+process.on('SIGTERM', handleShutdown);

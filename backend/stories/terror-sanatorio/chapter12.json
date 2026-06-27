@@ -20,13 +20,14 @@
   ],
   "nodes": {
     "c12_inicio": {
-      "text": "Llegas corriendo al portón de hierro en la planta baja. Las rejas se han abierto un par de metros, pero la criatura del sanatorio emerge de las sombras bloqueándote el paso. Sus ojos amarillos brillan con furia salvaje. Estás acorralado.",
-      "ambient_sound": "audio/ambience_terror_loop.mp3",
+      "text": "Llegas corriendo al portón de hierro en la planta baja. Las rejas se han abierto un par de metros, pero la criatura del sanatorio emerge de las sombras bloqueándote el paso. Sus ojos amarillos brillan con furia salvaje. Estás acorralado.\n\nLa criatura se interpone en tu camino con las garras listas para despedazarte, y sabes que este es el último enfrentamiento.\n\nEl aire se vuelve denso y difícil de respirar ante la cercanía del monstruo, paralizándote momentáneamente por el miedo.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_terror_loop.mp3",
+      "image": "images/terror-sanatorio/ch12/c12_porton.jpg",
       "visual_effect": "shake",
       "options": [
         {
-          "text": "Digitar apresuradamente el código '4091' en el panel de control del portón",
-          "next_node_id": "c12_escape_exitoso"
+          "text": "Aproximarte al panel del portón para digitar el código de escape",
+          "next_node_id": "c12_escribir_codigo"
         },
         {
           "text": "Canalizar la energía de la gema negra que tomaste en la capilla",
@@ -34,17 +35,45 @@
         }
       ]
     },
+    "c12_escribir_codigo": {
+      "text": "Te colocas ante el teclado del portón principal. La pantalla parpadea exigiendo el código de cuatro dígitos. Detrás de ti, escuchas los pasos veloces de la criatura aproximándose. ¡Debes darte prisa!",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_terror_loop.mp3",
+      "image": "images/terror-sanatorio/ch12/c12_porton.jpg",
+      "visual_effect": "shake",
+      "options": [],
+      "input_challenge": {
+        "placeholder": "Digita el código de 4 dígitos...",
+        "correct_answer": "4091",
+        "success_node_id": "c12_escape_exitoso",
+        "fail_node_id": "c12_muerte_codigo"
+      }
+    },
+    "c12_muerte_codigo": {
+      "text": "Introduces un código incorrecto. La pantalla parpadea con una luz roja de error. Antes de que puedas reaccionar o intentarlo de nuevo, unas garras gélidas te sujetan por la espalda y te arrastran de vuelta a la oscuridad.",
+      "ambient_sound": "audio/terror-sanatorio/shared/game_over.mp3",
+      "image": "images/terror-sanatorio/shared/death_scene.jpg",
+      "visual_effect": "fade_to_black",
+      "is_death_node": true,
+      "options": [
+        {
+          "text": "Despertar frente al portón (Reintentar)",
+          "next_node_id": "c12_inicio"
+        }
+      ]
+    },
     "c12_escape_exitoso": {
-      "text": "Introduces el código '4091' en el teclado numérico. El portón se abre por completo y corres desesperadamente hacia los bosques bajo los primeros rayos del amanecer. Logras escapar, libre de la negrura del sanatorio.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Introduces el código '4091' en el teclado numérico. El portón se abre por completo y corres desesperadamente hacia los bosques bajo los primeros rayos del amanecer. Logras escapar, libre de la negrura del sanatorio.\n\nLos primeros rayos del sol matinal entran por la verja de hierro abierta, calentando tu rostro y disipando la pesadilla.\n\nTu corazón late con fuerza descontrolada contra tus costillas, y el sudor frío te nubla la vista mientras la adrenalina te impulso a seguir adelante sin mirar atrás, sabiendo que el menor titubeo será tu fin.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch12/c12_amanecer.jpg",
       "visual_effect": "none",
       "checkpoint": true,
       "unlock_trophy_id": "t_superviviente",
       "options": []
     },
     "c12_gema_tomada": {
-      "text": "Sostienes la gema negra en tu mano y cierras los ojos. Una energía oscura fluye por tu cuerpo. La criatura se detiene y cae de rodillas ante ti con sumisión antes de desintegrarse en polvo. Eres el nuevo señor del Vórtice.",
-      "ambient_sound": "audio/ambience_relief.mp3",
+      "text": "Sostienes la gema negra en tu mano y cierras los ojos. Una energía oscura fluye por tu cuerpo. La criatura se detiene y cae de rodillas ante ti con sumisión antes de desintegrarse en polvo. Eres el nuevo señor del Vórtice.\n\nLa energía oscura de la gema recorre tus venas como un fuego helado que te otorga un poder antiguo y absoluto.\n\nLa bestia retrocede aullando de dolor mientras la luz purpúrea de la gema la reduce a cenizas frente a ti.",
+      "ambient_sound": "audio/terror-sanatorio/shared/ambience_relief.mp3",
+      "image": "images/terror-sanatorio/ch12/c12_heredero.jpg",
       "visual_effect": "red_flash",
       "checkpoint": true,
       "unlock_trophy_id": "t_heredero",

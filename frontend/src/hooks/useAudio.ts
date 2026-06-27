@@ -1,9 +1,35 @@
+import { useState, useEffect } from 'react';
+
 // Singleton variables to keep track of audio state globally
 let globalAudio: HTMLAudioElement | null = null;
 let activeTrack: string | null = null;
 let fadeTimer: any = null;
+let isMutedGlobal = localStorage.getItem('audio_muted') === 'true';
+const listeners = new Set<(muted: boolean) => void>();
 
 export function useAudio() {
+  const [isMuted, setIsMuted] = useState(isMutedGlobal);
+
+  useEffect(() => {
+    const onChange = (muted: boolean) => setIsMuted(muted);
+    listeners.add(onChange);
+    return () => {
+      listeners.delete(onChange);
+    };
+  }, []);
+
+  const toggleMute = () => {
+    const nextMuted = !isMutedGlobal;
+    isMutedGlobal = nextMuted;
+    localStorage.setItem('audio_muted', String(nextMuted));
+    
+    if (globalAudio) {
+      globalAudio.muted = nextMuted;
+    }
+    
+    listeners.forEach(listener => listener(nextMuted));
+  };
+
   const playTrack = (trackPath: string | undefined) => {
     if (!trackPath) {
       stopAudio();
@@ -32,6 +58,7 @@ export function useAudio() {
       activeTrack = formattedPath;
       globalAudio = new Audio(formattedPath);
       globalAudio.loop = true;
+      globalAudio.muted = isMutedGlobal; // Apply current mute setting
       globalAudio.volume = 0;
 
       globalAudio.play().then(() => {
@@ -51,6 +78,32 @@ export function useAudio() {
         }, stepInterval);
       }).catch(err => {
         console.warn('Autoplay blocked: user interaction required before playing audio.', err);
+        
+        // Retrying on next user interaction gesture
+        const playOnInteraction = () => {
+          if (globalAudio && globalAudio.paused) {
+            globalAudio.play().then(() => {
+              let currentVol = 0;
+              const targetVol = 0.3;
+              fadeTimer = setInterval(() => {
+                currentVol += targetVol / steps;
+                if (currentVol >= targetVol) {
+                  currentVol = targetVol;
+                  clearInterval(fadeTimer);
+                  fadeTimer = null;
+                }
+                if (globalAudio) {
+                  globalAudio.volume = currentVol;
+                }
+              }, stepInterval);
+            }).catch(e => console.error("Playback failed on user gesture:", e));
+          }
+          document.removeEventListener('click', playOnInteraction);
+          document.removeEventListener('keydown', playOnInteraction);
+        };
+        
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('keydown', playOnInteraction);
       });
     };
 
@@ -90,5 +143,5 @@ export function useAudio() {
     activeTrack = null;
   };
 
-  return { playTrack, stopAudio };
+  return { playTrack, stopAudio, toggleMute, isMuted };
 }
