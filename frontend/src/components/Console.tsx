@@ -314,7 +314,7 @@ export function Console({
         </div>
         
         <div style={styles.navCenter}>
-          <span style={styles.chapterBadge}>
+          <span className="chapter-badge" style={styles.chapterBadge}>
             CAPÍTULO {currentChapter}
           </span>
         </div>
@@ -328,7 +328,7 @@ export function Console({
             {theme === 'dark' ? <Icons.Sun size={18} /> : <Icons.Moon size={18} />}
           </button>
           
-          <div style={styles.statContainer} title="Tiempo de juego">
+          <div className="stat-container" style={styles.statContainer} title="Tiempo de juego">
             <Icons.Clock size={14} color="var(--text-secondary)" />
             <span className="mono-stats" style={styles.statValue}>
               {formatPlaytime(playtimeSeconds)}
