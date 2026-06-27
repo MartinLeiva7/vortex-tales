@@ -65,26 +65,26 @@ export function Dashboard({ user, onSelectStory, onRestartStory, onLogout, theme
 
   return (
     <div style={styles.container}>
-      <header style={styles.header}>
+      <header className="dashboard-header" style={styles.header}>
         <div style={styles.logoContainer}>
           <h2 className="cinzel-title" style={styles.logo}>VORTEX TALES</h2>
         </div>
-        <div style={styles.userInfo}>
+        <div className="dashboard-user-info" style={styles.userInfo}>
           <button onClick={toggleMute} style={styles.themeToggleBtn} title={isMuted ? "Activar Música" : "Silenciar Música"}>
             {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
           </button>
           <button onClick={onToggleTheme} style={styles.themeToggleBtn} title="Cambiar Tema">
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <span style={styles.username}>Explorador: <strong style={{ color: 'var(--accent-teal)' }}>{user.username}</strong></span>
+          <span className="dashboard-username" style={styles.username}>Explorador: <strong style={{ color: 'var(--accent-teal)' }}>{user.username}</strong></span>
           <button onClick={onLogout} style={styles.logoutBtn}>Cerrar Sesión</button>
         </div>
       </header>
 
-      <main style={styles.main}>
+      <main className="dashboard-main" style={styles.main}>
         <h3 className="cinzel-title" style={styles.sectionTitle}>Selecciona tu aventura</h3>
         
-        <div style={styles.grid}>
+        <div className="dashboard-grid" style={styles.grid}>
           {stories.map((story) => (
             <div
               key={story.id}

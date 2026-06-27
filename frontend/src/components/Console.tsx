@@ -360,7 +360,7 @@ export function Console({
           <div style={styles.borderCornerBottomRight}></div>
           
           {node.image && (
-            <div style={{ ...styles.imageContainer, position: 'relative', zIndex: 10 }}>
+            <div className="image-container" style={{ ...styles.imageContainer, position: 'relative', zIndex: 10 }}>
               <img
                 src={node.image.startsWith('/') ? node.image : '/' + node.image}
                 alt="Escena narrativa"
@@ -369,9 +369,9 @@ export function Console({
             </div>
           )}
           
-          <div style={{ ...styles.narrativeArea, position: 'relative', zIndex: 10 }}>
+          <div className="narrative-area" style={{ ...styles.narrativeArea, position: 'relative', zIndex: 10 }}>
             <p 
-              className={!isTypingComplete ? 'typewriter-cursor' : ''} 
+              className={!isTypingComplete ? 'typewriter-cursor narrative-text' : 'narrative-text'} 
               style={{
                 ...styles.narrativeText,
                 color: node.is_death_node ? '#ffffff' : 'var(--text-primary)',
@@ -383,7 +383,7 @@ export function Console({
           </div>
           
           {/* Interaction Area */}
-          <div style={styles.optionsArea}>
+          <div className="options-area" style={styles.optionsArea}>
             {timeLeft !== null && node.timer && isTypingComplete && !loading && (
               <div style={styles.timerWrapper}>
                 <div style={styles.timerHeader}>
@@ -414,12 +414,13 @@ export function Console({
                 <span style={styles.loadingText}>Conectando con el Vórtice...</span>
               </div>
             ) : isTypingComplete ? (
-              <div style={styles.optionsContainer}>
+              <div className="options-container" style={styles.optionsContainer}>
                 {node.input_challenge ? (
                   // Input challenge Form
                   <form onSubmit={handleInputSubmit} style={styles.inputForm}>
                     <input
                       type="text"
+                      className="challenge-input"
                       value={userInput}
                       onChange={(e) => setUserInput(e.target.value)}
                       placeholder={node.input_challenge.placeholder}
@@ -428,7 +429,7 @@ export function Console({
                     />
                     <button
                       type="submit"
-                      className="glow-btn"
+                      className="glow-btn submit-input-btn"
                       style={styles.submitInputBtn}
                       disabled={!userInput.trim()}
                     >
@@ -439,7 +440,7 @@ export function Console({
                 ) : node.checkpoint ? (
                   // Checkpoint button
                   <button
-                    className="glow-btn"
+                    className="glow-btn option-btn checkpoint-btn"
                     onClick={() => handleOptionClick('next_chapter')}
                     style={styles.checkpointBtn}
                   >
@@ -451,7 +452,7 @@ export function Console({
                   node.options.map((opt, i) => (
                     <button
                       key={i}
-                      className="glow-btn glow-btn-red"
+                      className="glow-btn glow-btn-red option-btn death-btn"
                       onClick={() => handleOptionClick(opt.next_node_id)}
                       style={styles.deathBtn}
                     >
@@ -464,7 +465,7 @@ export function Console({
                   node.options.map((opt, i) => (
                     <button
                       key={i}
-                      className="glow-btn"
+                      className="glow-btn option-btn"
                       onClick={() => handleOptionClick(opt.next_node_id)}
                       style={styles.optionBtn}
                     >
