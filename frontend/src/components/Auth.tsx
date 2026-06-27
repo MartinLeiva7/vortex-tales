@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
@@ -10,6 +11,7 @@ export function Auth({ onAuthSuccess }: AuthProps) {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -74,14 +76,24 @@ export function Auth({ onAuthSuccess }: AuthProps) {
 
           <div style={styles.inputGroup}>
             <label style={styles.label}>Contraseña</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={loading}
-              placeholder="••••••••"
-              style={styles.input}
-            />
+            <div style={styles.passwordContainer}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
+                placeholder="••••••••"
+                style={{ ...styles.input, paddingRight: '45px' }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={styles.eyeBtn}
+                title={showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
 
           <button
@@ -99,6 +111,7 @@ export function Auth({ onAuthSuccess }: AuthProps) {
             onClick={() => {
               setIsLogin(!isLogin);
               setError(null);
+              setShowPassword(false);
             }}
             style={styles.switchBtn}
           >
@@ -196,6 +209,26 @@ const styles = {
     fontSize: '0.85rem',
     cursor: 'pointer',
     textDecoration: 'underline',
+    outline: 'none',
+    transition: 'var(--transition-smooth)',
+  },
+  passwordContainer: {
+    position: 'relative' as const,
+    width: '100%',
+  },
+  eyeBtn: {
+    position: 'absolute' as const,
+    right: '12px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    background: 'none',
+    border: 'none',
+    color: 'var(--text-secondary)',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '4px',
     outline: 'none',
     transition: 'var(--transition-smooth)',
   },
